@@ -102,4 +102,49 @@ writer.add_image("Normalize",img_nrom)
 writer.close()
 ```
 
-### 4、pytorch中的 Resize，，将一列数据变化到某个固定区间比如[0, 1]，可以设置变化的均值和方差
+### 4、pytorch中的 Resize，调整tensor的尺寸
+
+```py
+from PIL import Image
+from tochvision import transforms
+from torch.utils.tensorboard import SummaryWriter
+from torchvision import transforms
+
+writer = SummaryWriter("logs")
+img = Image.open("images/pytorch.png")
+print(img)
+
+trans_totensor = transforms.ToTensor()
+img_tensor = trans_totensor(img)
+writer.add_image("ToTensor",img_tensor)
+
+#normalize
+print(img_tensor[0][0][0])
+trans_norm = transforms.Normalize([0.5,0.5,0.5],[0.5,0.5,0.5])//图片是三通道数据，设置mean和std
+img_nrom = trans_nrom(img_tensor)
+print(img_nrom[0][0][0])
+writer.add_image("Normalize",img_nrom)
+
+#Resize
+print(img.size)
+trans_resize = transforms.Resize((512,512))#设置变换的大小，只输入一个数的时候改变长和宽中最长的那个
+
+img_resize = trans_resize(img)#对img对象进行变换
+img_resize = trans_totensor(img_resize)#缩放后转换为tenser数据类型
+
+print(img_resize)
+
+writer.close()
+```
+
+### 5、pytorch中的 Compose，参数是一个列表，（[transforms参数1，transforms参数2]），会连续完成一串的操作组合,输入输出的类型要匹配
+
+```py
+# Compose - resize - 2
+trans_ resize_2 = transforms.Resize(512)
+trans_ compose = transforms.Compose([trans_resize_2，trans_ totensor])
+img_ resize_2 = trans_compose( img)
+writer .add_ image( "Resize", img_resize. 2, 1)
+```
+
+### 剩余的函数需要查看输入的参数以及输出，就可以，主要是对张量进行操作
