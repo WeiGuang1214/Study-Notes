@@ -29,4 +29,4 @@ writer.close()
 
 ```
 
-<img src="[C:\Users\微光\AppData\Roaming\Typora\typora-user-images\image-20240819205332245.png](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/image.png)" alt="image-20240819205332245" style="zoom:67%;" />
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/image.png)
