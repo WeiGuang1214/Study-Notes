@@ -4,7 +4,7 @@ dir（）：打开，看见容器里面是什么
 
 help（）：说明书
 
-<img src="C:\Users\微光\AppData\Roaming\Typora\typora-user-images\image-20231207143524670.png" alt="image-20231207143524670" style="zoom: 33%;" />
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/1727098367580.jpg)
 
 #### 读取数据
 
@@ -16,7 +16,7 @@ Dataset：提供一种方式去获取数据及其label
 
 Dataloader：为后面的网络提供不同的数据形式
 
-<img src="C:\Users\微光\AppData\Roaming\Typora\typora-user-images\image-20231207145825248.png" alt="image-20231207145825248" style="zoom:33%;" />
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/1727098260528.jpg)
 
 ```python
 # torch对数据集处理

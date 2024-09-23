@@ -6,13 +6,15 @@ from torchvision import transform
 
 transforms.py 相当于一个工具箱
 
-<img src="C:\Users\微光\AppData\Roaming\Typora\typora-user-images\image-20240804180550557.png" alt="image-20240804180550557" style="zoom: 50%;" />
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/1727095755526.jpg)
 
 ### tensor数据类型->张量
 
 通过transform.ToTensor去解决两个问题
 
 1、transform如何使用    2、为什么需要Tensor数据类型
+
+### 和Java的类的概念类似，先创建一个对象，再调用方法
 
 ```python
 img_path = ""
@@ -45,7 +47,7 @@ writer.add_image("Tensor_img",tensor_img)
 ### 1、pytorch中的call，内置__call__方法可以直接传参数调用call方法
 
 ```py
-clss Person:
+class Person:
     def __call__(self,name):
     	print("__call__"+"Hello"+name)
     def hello(self,name):

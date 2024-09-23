@@ -21,7 +21,7 @@ writer.close()
 
 x轴global_step、y轴scalar_value
 
-<img src="C:\Users\微光\AppData\Roaming\Typora\typora-user-images\image-20240804165100081.png" alt="image-20240804165100081" style="zoom:67%;" />
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/1727096815121.jpg)
 
 ```python
 writer = SummaryWriter("logs")
@@ -37,7 +37,7 @@ tensorboard --logdir=事件文件所在的文件夹名
 
 --port = 6007可以改变端口
 
-![image-20240804165708515](C:\Users\微光\AppData\Roaming\Typora\typora-user-images\image-20240804165708515.png)
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/1727097022351.jpg)
 
 
 
@@ -45,7 +45,7 @@ tensorboard --logdir=事件文件所在的文件夹名
 
 利用OpenCV读取numpy型图片
 
-<img src="C:\Users\微光\AppData\Roaming\Typora\typora-user-images\image-20231208171852548.png" alt="image-20231208171852548" style="zoom: 80%;" />
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/1727098097209.jpg)
 
 ```python
 writer = SummaryWriter("logs")

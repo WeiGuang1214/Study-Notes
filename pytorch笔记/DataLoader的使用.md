@@ -17,7 +17,7 @@ writer = SummaryWriter("dataloader")
 step=0
 
 #等价于
-for epoch in range(2):
+for epoch in range(4):
     step=0
 	for data in test_loader:#对所有的测试集数据进行4批次取data
    		 imgs,targets = data
@@ -29,4 +29,4 @@ writer.close()
 
 ```
 
-<img src="C:\Users\微光\AppData\Roaming\Typora\typora-user-images\image-20240819205332245.png" alt="image-20240819205332245" style="zoom:67%;" />
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/1727098476206.jpg)

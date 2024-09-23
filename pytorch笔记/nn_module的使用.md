@@ -15,7 +15,7 @@ class Model (nn. Module) :#继承nn类
 
 ```
 
-![image-20240821132446519](C:\Users\微光\AppData\Roaming\Typora\typora-user-images\image-20240821132446519.png)
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/1727107826983.jpg)
 
 ### 一个简单的例子
 
