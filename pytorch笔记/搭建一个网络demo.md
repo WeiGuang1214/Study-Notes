@@ -2,9 +2,9 @@
 
 例子：
 
-![image-20240901162009969](C:\Users\余鹏飞\AppData\Roaming\Typora\typora-user-images\image-20240901162009969.png)
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/1727189216399.jpg)
 
-![image-20240901162455395](C:\Users\余鹏飞\AppData\Roaming\Typora\typora-user-images\image-20240901162455395.png)
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/1727189376083.jpg)
 
 
 

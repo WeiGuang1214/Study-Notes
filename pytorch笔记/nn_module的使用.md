@@ -66,7 +66,7 @@ print(output)
 
 ## 卷积层
 
-![image-20240821171948214](C:\Users\微光\AppData\Roaming\Typora\typora-user-images\image-20240821171948214.png)
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/1727190112577.jpg)
 
 channel指的是通道数，多一个通道数相当于多一个卷积核进行计算，最终的计算结果有几个通道数就有几个卷积结果
 
