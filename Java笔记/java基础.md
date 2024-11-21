@@ -167,5 +167,18 @@ result = a>b ? a++ : b-- ;	注意先处理返回 和 后计算表达式的运算
 
 先单目，再算术运算，再比较  再看逻辑大小
 
+#### 标识符规范
 
+驼峰命名，不能用关键字和保留字，注意特殊字符，
 
+#### 输入
+
+java.util.Scanner 类
+
+Scanner scanner = new Scanner(System.in);
+
+String name = scanner.next() 字符串
+
+int a = scanner.nextInt() 什么类型就用什么结尾
+
+double salary = scanner.nextDouble() 什么类型就用什么结尾
