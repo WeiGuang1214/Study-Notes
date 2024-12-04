@@ -249,3 +249,11 @@ double salary = scanner.nextDouble() 什么类型就用什么结尾
 
 #### 结果返回要转换为原码（最后print为10进制），注意负号的情况
 
+##### 顺序控制
+
+分支控制 if
+
+多分支 if else、嵌套
+
+
+
