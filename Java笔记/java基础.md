@@ -253,7 +253,26 @@ double salary = scanner.nextDouble() 什么类型就用什么结尾
 
 分支控制 if
 
-多分支 if else、嵌套
+双分支 if else、嵌套
+
+多分支switch：
+
+```java
+switch(表达式):{  //表达式只能是 byte int short char string enum[]
+    case '常量1':
+    	语句块1;
+    	break;  //  有退出的时候，匹配了退出，否则没有匹配，继续往后判断
+    // 如果匹配了没有break，会一直执行后面的语句块，default也会执行，直到break   穿透
+    case '常量2':
+    	语句块2: 
+    	break; 
+    default:  // 如果前面没有匹配就默认执行，然后break，可有可无
+    	语句块;
+    	break;
+}
+```
+
+需要注意的是表达式和case后的常量类型一致或者可以相互转换，char->int，case后必须常量，加 ' '
 
 
 
