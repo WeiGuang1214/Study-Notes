@@ -274,5 +274,11 @@ switch(表达式):{  //表达式只能是 byte int short char string enum[]
 
 需要注意的是表达式和case后的常量类型一致或者可以相互转换，char->int，case后必须常量，加 ' '
 
+##### for循环  
+
+for(int i = 0;i<100;i++){
+
+}
+
 
 
