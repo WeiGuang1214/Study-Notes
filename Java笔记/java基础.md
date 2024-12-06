@@ -276,9 +276,15 @@ switch(表达式):{  //表达式只能是 byte int short char string enum[]
 
 ##### for循环  
 
-for(int i = 0;i<100;i++){
+for(int i = 0;i<100;i++){     //   ；；为死循环
+
+}   // i++可以写入循环体内，i的作用域在循环体内也有效
+
+##### while循环
+
+while(条件){
+
+循环体
 
 }
-
-
 
