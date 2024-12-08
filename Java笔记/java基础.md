@@ -300,3 +300,20 @@ do{
 
 ##### 多重循环控制，嵌套，注意内外变量
 
+##### break跳出循环  continue 继续下一次循环
+
+break可以利用标签label指明要终结的是哪一层循环
+
+```java
+label1:
+for(int j =0;j<4;j++){
+label2:
+	for(){
+		if(){
+			break label1;
+		}
+	}
+} //break到哪，推出到哪个label
+```
+
+没有label默认退出最近的循环
