@@ -13,7 +13,6 @@
 
 <img src="C:\Users\微光\AppData\Roaming\Typora\typora-user-images\image-20240713192123775.png" alt="image-20240713192123775" style="zoom: 50%;" />
 
-#### 相对路径、绝对路径
 
 ​	相对路径：当前目录开始定位形成的一个路径
 
@@ -317,3 +316,5 @@ label2:
 ```
 
 没有label默认退出最近的循环
+
+##### return 返回值，或return;，表示跳出所在的方法，如果在main里面return就是结束程序
