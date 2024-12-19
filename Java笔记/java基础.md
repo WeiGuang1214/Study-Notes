@@ -359,3 +359,25 @@ for (int i=0;i<a.length;i++){
 a指向的是数组首地址，以此类推
 
 动态定义：int a//[]/[];  ，再new  a = new int [2]//[3] 
+
+##### 类与对象
+
+类class .属性，.方法     生成对象  ，调用属性方法
+
+```java
+class AA{
+
+	String aaa;
+	基本数据类型、引用、数组、类的对象
+	int num;
+}
+AA xiaoa = new AA()
+xiaoa.aaa=
+xiaoa.num=
+```
+
+##### 访问修饰符
+
+public   protected   默认  private
+
+类的对象开辟空间
