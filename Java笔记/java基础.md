@@ -438,6 +438,10 @@ public int sum(int... nums){
 
 
 
+<<<<<<< Updated upstream
+=======
+方法只能有一个返回值，方法参数传值，数组等等引用类型，传递的是地址，可以修改到具体变量
+>>>>>>> Stashed changes
 
 
 
