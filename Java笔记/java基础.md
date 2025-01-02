@@ -442,7 +442,7 @@ xiaoa.num=
 - 对象创建的流程，栈、堆、方法区
 - ##### this关键字
 
-​	Java虚拟机给每个对象分配this，代表当前对象，this.name=name，this.hashCode可以简单看成内部地址，哪个对象调用，this就代表哪个对象，this只能在构造器中使用，可以在一个构造器中访问另外一个构造器
+​	Java虚拟机给每个对象分配this，代表当前对象，this.name=name，this.hashCode可以简单看成内部地址，哪个对象调用，this就代表哪个对象，this只能在构造器中使用，可以在一个构造器中访问另外一个构造器，this可以直接使用构造器，this()，里面赋值传参
 
 
 
