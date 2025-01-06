@@ -444,7 +444,34 @@ xiaoa.num=
 
 ​	Java虚拟机给每个对象分配this，代表当前对象，this.name=name，this.hashCode可以简单看成内部地址，哪个对象调用，this就代表哪个对象，this只能在构造器中使用，可以在一个构造器中访问另外一个构造器，this可以直接使用构造器，this()，里面赋值传参
 
+#### 面向对象编程
 
+- **IDEA快捷键：**
+
+  - **ctrl +d 删除行**
+  - **ctrl+alt+向下光标  复制当前行**
+  - **alt+/ 补全代码**
+  - **ctrl+/ 添加注释，再按取消**
+  - **导入改行需要的类，alt+enter**
+  - **快速格式化，ctrl+shift+L**
+  - **快速运行程序，自己定义 ctrl+r**
+  - **生成构造器等 alt+insert**
+  - **查看类的层级关系   ctrl+H**
+  - **定位到哪个类的方法  ctrl+B** 
+  - **自动分配变量名    .var**     例：new Scanner(System.in).var
+
+- 包
+
+  - package 包名;  打包，import导入包，管理类，package只能放在第一句
+  - 命名规则：数字、字母、下划线、小圆点，但是不能数字开头且关键字、保留字     ：   公司名.项目名.模块名
+  - 基本包，自动导入：java.lang.*
+  - 工具包：java.util.*
+  - 网络包：java.net.*
+  - GUI界面开发：java.awt.*
+
+- ##### 访问修饰符
+
+​	Java虚拟机给每个对象分配this，代表当前对象，this.name=name，this.hashCode可以简单看成内部地址，哪个对象调用，this就代表哪个对象，this只能在构造器中使用，可以在一个构造器
 
 
 
