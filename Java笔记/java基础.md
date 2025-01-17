@@ -554,7 +554,7 @@ xiaoa.num=
   
   - equals方法，equals和==的区别，==是比较运算符，equals是方法
   
-  - Object内的equals判断对象是不是同一个，Object子类重写后的equals判断值
+  - Object内的equals判断对象是不是同一个，equals不能判断值是否相等，Object子类重写后的equals判断值
   
   - ==既可以判断基本类型也可以判断引用类型，值/地址(对象)是否相等
   
