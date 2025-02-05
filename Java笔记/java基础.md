@@ -453,7 +453,7 @@ xiaoa.num=
   - **ctrl+alt+向下光标  复制当前行**
   - **alt+/ 补全代码**
   - **ctrl+/ 添加注释，再按取消**
-  - **导入改行需要的类，alt+enter**
+  - **导入该行需要的类，alt+enter**
   - **快速格式化，ctrl+shift+L**
   - **快速运行程序，自己定义 ctrl+r**
   - **生成构造器等 alt+insert**
@@ -807,8 +807,62 @@ xiaoa.num=
   - @Override：重写父类方法，语法校验，如果真的重写，编译通过，没有就编译不通过
   - @Deprecated：某个方法已经过时，但是可以用
   - @SuppressWarnings({})：抑制编译器警告，当不想看到编译器警告的时候用这个注解，在{}内填写不想显示的信息
+- 异常
+
+  - 利用try-catch机制
+  - try{代码块}catch(Exception e){getmessage}
+  - 分为error(资源耗尽、栈溢出)和exception(编译、运行)两类
+  - exception：
+
+    - 数组越界、空指针、算数异常、类型转换异常
+  - 异常处理：
+
+    - try-catch-finally，程序员捕获自行处理，不管有没有异常都要执行finally
+    - throws，往上一级抛出，最终交给JVM处理，JVM直接输出异常程序并且中断，如果没有显式try catch就是默认throws
+
+  - 自定义异常
+
+    - 编译异常继承exception，运行异常继承runtime exception，编译类型需要在方法显式throws，运行类型可以直接方法内throw
+    - throw和throws的区别：
+    - throws是异常处理的一种方式(方法声明中)，后跟异常类型；throw是生成异常对象的关键字(方法体内)，后跟异常对象；
+
+- 包装类
+
+  - 基本数据类型对应的包装类，具有类的特征，可以调用类中的方法
+  - Boolean、Character、Byte、Short、Integer、Long、Float、Double，包装类是number的子类
+  - int和String的相互转化：i.toString、String.valueof(i)、
+
+    - String str = “123”；Integer i = new Integer(str)、Integer i = Integer.parseInt(str)
+
+  - 常用方法：
+
+    - MIN_VALUE,返回最小值
+    - MAX_VALUE,返回最大值
+    - Character类：
+    - isDigit('a')，判断是不是数字
+    - isLetter('a')  判断是不是字母
+    - isUpperCase('a') 判断是不是大写
+    - isLowerCase('a') 判断是不是大写
+    - isWhitespace('a') 判断是不是空格
+    - toUpperCase('a')  转大写
+    - toLowerCase('a')  转小写
+    - 只要是基本数据类型，==判断的是值，否则是判断引用对象是否一个
+
+  - 本数据类
+  - 本数据类型
+  - 本数据类型
+  - 本数据类型
+  - 本数据类型
+  - 本数据类型
+  - 本数据类型
+
 - 类方法
 - 类方法
+- 类方法
+- 类方法
+- 类方法
+
+
 - 类方法
 - 类方法
 - 类方法
