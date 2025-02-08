@@ -902,9 +902,16 @@ xiaoa.num=
   - Arrays.equals ，比较两个数组元素一致
   - Arrays.asList ， 把数组转化成列表
 
+- System类
+  - 常用方法：
+    - exit，退出当前程序
+    - arraycopy，复制数组
+    - currentTimeMillis，返回当前时间距离1970-1-1的毫秒数
+    - gc，垃圾回收机制
+    - 
 
+  - 
 
-- 类方法
 - 
 - 类方法
 - 类方法
