@@ -555,7 +555,7 @@ xiaoa.num=
   
   - equals方法，equals和==的区别，==是比较运算符，equals是方法
   
-  - Object内的equals判断对象是不是同一个，equals不能判断值是否相等，Object子类重写后的equals判断值
+  - Object内的equals判断对象是不是同一个，equals不能判断值是否相等，Object子类重写后的equals判断值，String的equals重写过了，判断值是否相等
   
   - ==既可以判断基本类型也可以判断引用类型，值/地址(对象)是否相等
   
@@ -825,7 +825,6 @@ xiaoa.num=
     - 编译异常继承exception，运行异常继承runtime exception，编译类型需要在方法显式throws，运行类型可以直接方法内throw
     - throw和throws的区别：
     - throws是异常处理的一种方式(方法声明中)，后跟异常类型；throw是生成异常对象的关键字(方法体内)，后跟异常对象；
-
 - 包装类
 
   - 基本数据类型对应的包装类，具有类的特征，可以调用类中的方法
@@ -833,9 +832,8 @@ xiaoa.num=
   - int和String的相互转化：i.toString、String.valueof(i)、
 
     - String str = “123”；Integer i = new Integer(str)、Integer i = Integer.parseInt(str)
-
   - 常用方法：
-
+  
     - MIN_VALUE,返回最小值
     - MAX_VALUE,返回最大值
     - Character类：
@@ -847,22 +845,74 @@ xiaoa.num=
     - toUpperCase('a')  转大写
     - toLowerCase('a')  转小写
     - 只要是基本数据类型，==判断的是值，否则是判断引用对象是否一个
+- String类
 
-  - 本数据类
-  - 本数据类型
-  - 本数据类型
-  - 本数据类型
-  - 本数据类型
-  - 本数据类型
-  - 本数据类型
+  - String字符串用来保存字符序列，可以用数组初始化，不能被继承，字符串对象指定之后不能改变地址，但是可以改变字符串内容，不可变
+  - 1、直接赋值：先看常量池里面有没有，有就指向地址，没有就创建再指向
+  - 2、调用构造器创建String对象：先在堆里面创建空间，内部有value属性，然后再指向常量池，没有则创建，最终指向的是堆里面的空间
+  - 如果是字符串相加，是在常量池新增字符串对象，如果是对象相加，是在堆里面创建对象
+  - String常用方法：
+    - equals，判断值相等
+    - equalsIgnoreCase，忽略大小写判断是否相等
+    - length，长度
+    - indexOf，字符第一次出现的下标
+    - lastIndexOf，字符最后一次出现的下标
+    - substring，截取指定范围的子串
+    - trim去掉前后空格
+    - charAt，获取某索引处的字符
+    - concat，拼接
+    - replace，代替
+    - split，以X分隔，返回数组
+    - toCharArray，转成字符数组
+- StringBuffer类，线程安全
+
+  - 可变的字符序列，里面放的是字符串变量，value放在堆内，大小可以变
+  - String->StringBuffer可以指定char[]大小，StringBuffer stringbuff = new StringBuffer(100)；
+  - toString也可以转成字符串，也可以用String的构造器
+  - 常用方法：
+    - append、delete、replace、insert、length
+- StringBuilder类
+
+  - 单线程使用，线程不安全
+  - 和StringBuffer兼容，用在字符串缓冲区被单个线程使用的时候，大多数时候比StringBuffer快，主要用append和insert方法
+  - 大量字符串修改用StringBuffer或StringBuilder
+  - 单线程用StringBuilder，多线程用StringBuffer
+  - 字符串很少修改用String
+
+- Math类
+
+  - 基本数学运算方法
+
+    - abs绝对值
+    - pow求幂，x的y次
+    - ceil大于等于该参数的最小整数，转成double
+    - floor小于等于该参数的最大整数，转成double
+    - round四舍五入，返回long
+    - sqrt开方，返回double
+    - random 返回0-1之间的double随机数  0<=  x<1  a<=<=b的随机数：(int)(a+Math.random()*(b-a+1))
+    - max、min最大最小
+
+- Arrays类
+
+  - Arrays.toString ，显示数组信息
+  - Arrays.sort，排序，底层快排
+  - Arrays.binarySearch,二分查找，要求必须有序
+  - Arrays.copyOf,复制数组
+  - Arrays.fill，用xx填充，覆盖数组
+  - Arrays.equals ，比较两个数组元素一致
+  - Arrays.asList ， 把数组转化成列表
+
+
 
 - 类方法
+- 
 - 类方法
 - 类方法
 - 类方法
 - 类方法
-
-
+- 类方法
+- 类方法
+- 类方法
 - 类方法
 - 类方法
 - 类方法
