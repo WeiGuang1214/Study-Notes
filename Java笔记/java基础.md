@@ -807,6 +807,7 @@ xiaoa.num=
   - @Override：重写父类方法，语法校验，如果真的重写，编译通过，没有就编译不通过
   - @Deprecated：某个方法已经过时，但是可以用
   - @SuppressWarnings({})：抑制编译器警告，当不想看到编译器警告的时候用这个注解，在{}内填写不想显示的信息
+  
 - 异常
 
   - 利用try-catch机制
@@ -825,6 +826,7 @@ xiaoa.num=
     - 编译异常继承exception，运行异常继承runtime exception，编译类型需要在方法显式throws，运行类型可以直接方法内throw
     - throw和throws的区别：
     - throws是异常处理的一种方式(方法声明中)，后跟异常类型；throw是生成异常对象的关键字(方法体内)，后跟异常对象；
+  
 - 包装类
 
   - 基本数据类型对应的包装类，具有类的特征，可以调用类中的方法
@@ -845,6 +847,7 @@ xiaoa.num=
     - toUpperCase('a')  转大写
     - toLowerCase('a')  转小写
     - 只要是基本数据类型，==判断的是值，否则是判断引用对象是否一个
+  
 - String类
 
   - String字符串用来保存字符序列，可以用数组初始化，不能被继承，字符串对象指定之后不能改变地址，但是可以改变字符串内容，不可变
@@ -864,6 +867,7 @@ xiaoa.num=
     - replace，代替
     - split，以X分隔，返回数组
     - toCharArray，转成字符数组
+  
 - StringBuffer类，线程安全
 
   - 可变的字符序列，里面放的是字符串变量，value放在堆内，大小可以变
@@ -871,6 +875,7 @@ xiaoa.num=
   - toString也可以转成字符串，也可以用String的构造器
   - 常用方法：
     - append、delete、replace、insert、length
+  
 - StringBuilder类
 
   - 单线程使用，线程不安全
@@ -908,26 +913,113 @@ xiaoa.num=
     - arraycopy，复制数组
     - currentTimeMillis，返回当前时间距离1970-1-1的毫秒数
     - gc，垃圾回收机制
-    - 
+  
+- 大数类
 
-  - 
 
-- 
+  - BigInteger，运算不能用+-*/
+
+    - 用字符串的方式new对象
+    - add加、subtract减法、multiply乘法、divide除法
+
+  - BigDecimal，大精度小数
+
+    - 也用字符串构建
+    - 也需要单独创建个对象，并且用方法实现运算add加、subtract减法、multiply乘法、divide除法(用BigDecimal.ROUND_CEILING保存精度)
+
+- Date类、Calendar、
+
+
+  - Date：
+
+    - 日期精确到毫秒，SimpleDateFormat格式化解析日期，日期to文本，文本to日期+
+    - 通过毫秒数得到日期，parse，把字符串日期转Date
+
+  - Calendar：
+
+    - 抽象类，构造器私有，用getInstance获得实例
+    - 通过对象.get获得Calendar的一个字段
+
+  - LocalDate日期、LocalTime时间、LocalDateTime日期时间、DateTimeFormatter格式化日期、Instant时间戳
+
+    - now当前时间对象，get获得字段，plus和minus可以对时间进行加减
+
+- 集合
+
+
+  - 动态保存任意多个对象，方便操作，add，remove，set，get等
+  - 单列集合只放值，双列集合放KV对
+
+- collection单列集合
+
+
+  - add添加、remove删除、size大小、isEmpty判空、clear清空、addAll添加多个、cointainsAll查找多个、removeAll
+
+  - 增强for：for(Object i：nums) ，和迭代器不同
+
+  - 迭代器Iterator，通过.iterator新建迭代器对象，通过while遍历，再次遍历需要重置迭代器
+
+
+    - next，下一个元素并返回
+
+    - hasNext，判断是否有下一个元素，remove删除
+
+    - ```java
+      Iterator iter = col.iterator();
+      while(iter.hasNext()){
+          Object o = iter.next();
+      }
+      ```
+
+      
+
+  - List，有序，添加顺序和取出顺序一致，并且元素可以重复，add，remove，set，get，subList，
+
+
+    - ArrayList
+
+      - 可以存null，是由数组实现的，基本等同于vector，现成不安全，所以多线程不建议使用ArrayList，底层代码扩容机制：无参：容量初始为0，-》10，再变为1.5倍，有参：容量指定，如需扩容直接1.5倍
+
+    - LinkedList
+    - Vector
+
+  - Set
+
+
+    - HashSet
+    - TreeSet
+
+- Map双列集合，K-V对
+
+
+  - HashMap
+  - Hashtable
+  - TreeMap
+  - Properties
+  - LinkedHashMap
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
-- 类方法
-- 类方法
-- 类方法
-- 类方法
+
 - 
 
 
