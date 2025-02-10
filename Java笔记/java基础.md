@@ -982,12 +982,16 @@ while(iter.hasNext()){
 
 ​      
 
-  - List，有序，添加顺序和取出顺序一致，并且元素可以重复，add，remove，set，get，subList
+  - List，有序，添加顺序和取出顺序一致，并且元素可以重复，add，remove，set，get，subList，查改较多的用ArrayList，增删较多的用LinkedList
     - ArrayList
 
-      - 可以存null，是由数组实现的，基本等同于vector，现成不安全，所以多线程不建议使用ArrayList，底层代码扩容机制：无参：容量初始为0，-》10，再变为1.5倍，有参：容量指定，如需扩容直接1.5倍
+      - 可以存null，是由数组实现的，基本等同于vector，线程不安全，所以多线程不建议使用ArrayList，底层代码扩容机制：无参：容量初始为0，->10，再变为1.5倍，有参：容量指定，如需扩容直接1.5倍
     - LinkedList
+      - 实现了双向链表和双端队列，元素可以重复，可以null，线程不安全，没有实现同步
+      - 底层是双向链表，每个节点node，删除添加不是数组完成的，效率较高，first和last指针
+
     - Vector
+      - 底层也是数组，是线程同步，线程安全的synchronized，扩容如果是无参，默认10，满了2倍，有参直接2倍扩容
 
 
   - Set
