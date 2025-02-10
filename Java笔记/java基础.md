@@ -947,56 +947,72 @@ xiaoa.num=
 - 集合
 
 
-  - 动态保存任意多个对象，方便操作，add，remove，set，get等
-  - 单列集合只放值，双列集合放KV对
-
-- collection单列集合
+    - 动态保存任意多个对象，方便操作，add，remove，set，get等
 
 
-  - add添加、remove删除、size大小、isEmpty判空、clear清空、addAll添加多个、cointainsAll查找多个、removeAll
-
-  - 增强for：for(Object i：nums) ，和迭代器不同
-
-  - 迭代器Iterator，通过.iterator新建迭代器对象，通过while遍历，再次遍历需要重置迭代器
+    - 单列集合只放值，双列集合放KV对
 
 
+
+  - collection单列集合
+
+
+      - add添加、remove删除、size大小、isEmpty判空、clear清空、addAll添加多个、cointainsAll查找多个、removeAll
+
+
+
+      - 增强for：for(Object i：nums) ，和迭代器不同
+
+
+
+      - 迭代器Iterator，通过.iterator新建迭代器对象，通过while遍历，再次遍历需要重置迭代器，
     - next，下一个元素并返回
 
     - hasNext，判断是否有下一个元素，remove删除
 
-    - ```java
-      Iterator iter = col.iterator();
-      while(iter.hasNext()){
-          Object o = iter.next();
-      }
-      ```
-
-      
-
-  - List，有序，添加顺序和取出顺序一致，并且元素可以重复，add，remove，set，get，subList，
 
 
+```java
+Iterator iter = col.iterator();
+while(iter.hasNext()){
+    Object o = iter.next();
+}
+```
+
+
+​      
+
+  - List，有序，添加顺序和取出顺序一致，并且元素可以重复，add，remove，set，get，subList
     - ArrayList
 
       - 可以存null，是由数组实现的，基本等同于vector，现成不安全，所以多线程不建议使用ArrayList，底层代码扩容机制：无参：容量初始为0，-》10，再变为1.5倍，有参：容量指定，如需扩容直接1.5倍
-
     - LinkedList
     - Vector
 
+
   - Set
-
-
     - HashSet
     - TreeSet
+
 
 - Map双列集合，K-V对
 
 
-  - HashMap
-  - Hashtable
-  - TreeMap
-  - Properties
-  - LinkedHashMap
+    - HashMap
+
+
+    - Hashtable
+
+
+    - TreeMap
+
+
+    - Properties
+
+
+    - LinkedHashMap
+
+
 
 - 类方法
 
