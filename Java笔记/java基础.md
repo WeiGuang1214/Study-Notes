@@ -999,16 +999,27 @@ while(iter.hasNext()){
     - HashSet
     
       - 实现了set接口，底层实际上是HashMap，不保证存取顺序一致，HashSet在底层扩容是用链式哈希表，数组+链表，Java8中哈希表链表长度>8，tabl>=64会变成红黑树
+      - 添加逻辑：先比较哈希值(hashCode)，哈希值相同的会放在同一个地址下的链表，然后判断equals是不是值相同，相同就添加，否则添加，所以String重写equals方法和hashCode方法，所以new String的时候就无法添加，其他类也是一样，如果重写就无法添加new对象
+      - LinkedHashSet，继承HashSet，底层是LinkedHashMap，底层维护数组+双向链表，依旧根据元素的hashCode决定存放位置，通过底层的双向链表保证了元素的次序，不允许添加重复元素
     - TreeSet
 
 
 - Map双列集合，K-V对
 
+  - 用于保存具有映射关系的Key-value；map中的Key-value可以是任何对象，被封装在HashMap$Node中；Key不允许重复，实现原理和HashSet一样；但是Value可以重复，key关键字相当于索引，key和value都可以为null但是key只能有一个，value可以多个
+
+
 
     - HashMap
+    
+    - put添加、添加key相同的value会覆盖上一个value，经常用String作为key；get(key)获取对应的value；
+    - size()，isEmpty()，containsKey()查找是否存在，containsValue()，remove(key)或者kv对、putAll(Map)、clear()、keySet关键字集合、values()值的集合、equals判断相同，getOrDefault返回value、entrySet返回entry集合
+    - 遍历方法：1、获得keySet，通过key增强for获得value；2、迭代器获得key，迭代get；3、把所有value取出，可以使用所有的Collection方法；也可以通过entrySet使用增强for和迭代器，向下转型成Map.entry
+    HashMap没有实现同步机制，所以是线程不安全的
 
 
     - Hashtable
+    
 
 
     - TreeMap
@@ -1022,84 +1033,17 @@ while(iter.hasNext()){
 
 
 - 类方法
-
 - 类方法
-
 - 类方法
-
 - 类方法
-
 - 类方法
-
 - 类方法
-
 - 类方法
-
 - 类方法
-
 - 类方法
-
 - 类方法
-
 - 类方法
-
-- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-​	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- 类方法
+- 类方法
+- 类方法
+- 类方
