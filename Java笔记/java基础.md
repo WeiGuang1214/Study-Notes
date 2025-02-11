@@ -1010,16 +1010,26 @@ while(iter.hasNext()){
 
 
 
-    - HashMap
-    
-    - put添加、添加key相同的value会覆盖上一个value，经常用String作为key；get(key)获取对应的value；
-    - size()，isEmpty()，containsKey()查找是否存在，containsValue()，remove(key)或者kv对、putAll(Map)、clear()、keySet关键字集合、values()值的集合、equals判断相同，getOrDefault返回value、entrySet返回entry集合
-    - 遍历方法：1、获得keySet，通过key增强for获得value；2、迭代器获得key，迭代get；3、把所有value取出，可以使用所有的Collection方法；也可以通过entrySet使用增强for和迭代器，向下转型成Map.entry
-    HashMap没有实现同步机制，所以是线程不安全的
+```java
+- HashMap
+
+- put添加、添加key相同的value会覆盖上一个value，经常用String作为key；get(key)获取对应的value；
+- size()，isEmpty()，containsKey()查找是否存在，containsValue()，remove(key)或者kv对、putAll(Map)、clear()、keySet关键字集合、values()值的集合、equals判断相同，getOrDefault返回value、entrySet返回entry集合
+- 遍历方法：1、获得keySet，通过key增强for获得value；2、迭代器获得key，迭代get；3、把所有value取出，可以使用所有的Collection方法；也可以通过entrySet使用增强for和迭代器，向下转型成Map.entry
+HashMap没有实现同步机制，所以是线程不安全的
+
+HashMap底层维护Node类型的table，默认为null
+创建对象的时候加载因子loadfactor初始化为0.75
+添加k-v时，先通过K的哈希值得到table的索引，然后判断该索引处有没有元素，没有直接添加，有则判断元素的key是否相同，相同就替换val，不相同则要判断是树结构还是链表结构，做出相应处理，添加时容量不够要扩容
+第1次添加，table扩容到16，临界值变成12
+以后再一次扩容变成2倍，临界值为原来2倍，以此类推
+一条链表长度超过8，并且table的大小>64才会变成红黑树，否则就扩容
+
+```
 
 
     - Hashtable
-    
+
 
 
     - TreeMap
