@@ -1018,7 +1018,7 @@ while(iter.hasNext()){
                 System.out.println(entry.getKey()+":"+entry.getValue());
             }
     2、values方法返回集合
-        Collection collection = map.values();
+        Collection collection = map.values(); // 返回value集合
             for(Object value:collection){
                 System.out.println(value);
             }
