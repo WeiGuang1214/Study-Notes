@@ -1002,13 +1002,12 @@ while(iter.hasNext()){
       - 添加逻辑：先比较哈希值(hashCode)，哈希值相同的会放在同一个地址下的链表，然后判断equals是不是值相同，相同就添加，否则添加，所以String重写equals方法和hashCode方法，所以new String的时候就无法添加，其他类也是一样，如果重写就无法添加new对象
       - LinkedHashSet，继承HashSet，底层是LinkedHashMap，底层维护数组+双向链表，依旧根据元素的hashCode决定存放位置，通过底层的双向链表保证了元素的次序，不允许添加重复元素
     - TreeSet
+      - 排序，在用无参构造器初始化的时候仍然是无序；使用TreeSet提供的构造器可以传入一个比较器(匿名内部类)，并且指定顺序，底层是TreeMap，通过comparable实现比较排序
 
 
 - Map双列集合，K-V对
 
   - 用于保存具有映射关系的Key-value；map中的Key-value可以是任何对象，被封装在HashMap$Node中；Key不允许重复，实现原理和HashSet一样；但是Value可以重复，key关键字相当于索引，key和value都可以为null但是key只能有一个，value可以多个
-
-
 
 ```java
 - HashMap
@@ -1029,6 +1028,10 @@ HashMap底层维护Node类型的table，默认为null
 
 
     - Hashtable
+    存放的元素是KV对，并且key和value都不能为空，抛出null异常
+    使用方法和HashMap类似
+    Hashtable是线程安全的，HashMap是线程不安全的
+    扩容机制：边界值依然是0.75，超过边界大小会*2再+1，以此类推
 
 
 
@@ -1036,13 +1039,39 @@ HashMap底层维护Node类型的table，默认为null
 
 
     - Properties
+    继承了Hashtable，间接实现map接口，也是KV对保存数据，不能为空，使用和Hashtable类似，properties通常作为配置文件，在IO流中，加载数据到Properties对象中
 
 
     - LinkedHashMap
 
+根据开发需要，判断存储类型，一组对象或者一组键值对，
 
+一组对象用Collection接口，允许重复用List，增删改较多用LinkedList，查找较多用ArrayList
 
-- 类方法
+​						不允许重复用Set，无序用HashSet(底层是HashMap)，排序用TreeSet，插入和取出顺序一致用LinkedHashSet
+
+一对键值对用Map
+
+​	键无序用HashMap
+
+​	键排序用TreeMap
+
+​	键插入和取出顺序一致用LinkedHashMap
+
+​	读取文件用Properties
+
+- Collection工具类
+  - 操作Set、List和Map等集合的工具类，静态方法对集合元素进行排序、查询修改
+  - reverse(List)，反转
+  - shuffle(List)，对List内元素随机排序，打乱
+  - sort(List)，集合排序
+  - sort(List，Comparator)，按照比较器进行排序
+  - swap(List,i,j)，交换元素
+  - max(Collection)，返回自然顺序最大值
+  - min最小
+  - frequency(集合，对象)，返回出现次数
+  - copy复制
+  - replaceAll(List list，Obj old，Obj new)，替换
 - 类方法
 - 类方法
 - 类方法
