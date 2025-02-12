@@ -1010,14 +1010,15 @@ while(iter.hasNext()){
   - 用于保存具有映射关系的Key-value；map中的Key-value可以是任何对象，被封装在HashMap$Node中；Key不允许重复，实现原理和HashSet一样；但是Value可以重复，key关键字相当于索引，key和value都可以为null但是key只能有一个，value可以多个
   
   - ```java
-    1、entryset迭代器
+    1、通过keySet返回key集合，然后增强for循环遍历getvalue
+    2、entryset迭代器
     Set entrySet = map.entrySet();
             Iterator iterator = entrySet.iterator();
             while(iterator.hasNext()){
                 Map.Entry entry = (Map.Entry)iterator.next();
                 System.out.println(entry.getKey()+":"+entry.getValue());
             }
-    2、values方法返回集合
+    3、values方法返回集合
         Collection collection = map.values(); // 返回value集合
             for(Object value:collection){
                 System.out.println(value);
