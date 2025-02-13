@@ -855,18 +855,18 @@ xiaoa.num=
   - 2、调用构造器创建String对象：先在堆里面创建空间，内部有value属性，然后再指向常量池，没有则创建，最终指向的是堆里面的空间
   - 如果是字符串相加，是在常量池新增字符串对象，如果是对象相加，是在堆里面创建对象
   - String常用方法：
-    - equals，判断值相等
-    - equalsIgnoreCase，忽略大小写判断是否相等
-    - length，长度
-    - indexOf，字符第一次出现的下标
-    - lastIndexOf，字符最后一次出现的下标
-    - substring，截取指定范围的子串
-    - trim去掉前后空格
-    - charAt，获取某索引处的字符
-    - concat，拼接
-    - replace，代替
-    - split，以X分隔，返回数组
-    - toCharArray，转成字符数组
+    - equals()，判断值相等
+    - equalsIgnoreCase()，忽略大小写判断是否相等
+    - length()，长度
+    - indexOf()，字符第一次出现的下标
+    - lastIndexOf()，字符最后一次出现的下标
+    - substring(x,y)，截取指定范围的子串
+    - trim()去掉前后空格
+    - charAt()，获取某索引处的字符
+    - concat()，拼接
+    - replace()，代替
+    - split()，以X分隔，返回数组
+    - toCharArray()，转成字符数组
   
 - StringBuffer类，线程安全
 
@@ -888,31 +888,31 @@ xiaoa.num=
 
   - 基本数学运算方法
 
-    - abs绝对值
-    - pow求幂，x的y次
-    - ceil大于等于该参数的最小整数，转成double
-    - floor小于等于该参数的最大整数，转成double
-    - round四舍五入，返回long
-    - sqrt开方，返回double
-    - random 返回0-1之间的double随机数  0<=  x<1  a<=<=b的随机数：(int)(a+Math.random()*(b-a+1))
-    - max、min最大最小
+    - abs()绝对值
+    - pow()求幂，x的y次
+    - ceil()大于等于该参数的最小整数，转成double
+    - floor()小于等于该参数的最大整数，转成double
+    - round()四舍五入，返回long
+    - sqrt()开方，返回double
+    - random() 返回0-1之间的double随机数  0<=  x<1  a<=<=b的随机数：(int)(a+Math.random()*(b-a+1))
+    - max()、min()最大最小
 
 - Arrays类
 
-  - Arrays.toString ，显示数组信息
-  - Arrays.sort，排序，底层快排
-  - Arrays.binarySearch,二分查找，要求必须有序
-  - Arrays.copyOf,复制数组
-  - Arrays.fill，用xx填充，覆盖数组
-  - Arrays.equals ，比较两个数组元素一致
-  - Arrays.asList ， 把数组转化成列表
+  - Arrays.toString() ，显示数组信息
+  - Arrays.sort()，排序，底层快排
+  - Arrays.binarySearch(),二分查找，要求必须有序
+  - Arrays.copyOf(),复制数组
+  - Arrays.fill()，用xx填充，覆盖数组
+  - Arrays.equals() ，比较两个数组元素一致
+  - Arrays.asList() ， 把数组转化成列表
 
 - System类
   - 常用方法：
-    - exit，退出当前程序
-    - arraycopy，复制数组
-    - currentTimeMillis，返回当前时间距离1970-1-1的毫秒数
-    - gc，垃圾回收机制
+    - exit()，退出当前程序
+    - arraycopy()，复制数组
+    - currentTimeMillis()，返回当前时间距离1970-1-1的毫秒数
+    - gc()，垃圾回收机制
   
 - 大数类
 
@@ -920,34 +920,34 @@ xiaoa.num=
   - BigInteger，运算不能用+-*/
 
     - 用字符串的方式new对象
-    - add加、subtract减法、multiply乘法、divide除法
+    - add()加、subtract()减法、multiply()乘法、divide()除法
 
   - BigDecimal，大精度小数
 
     - 也用字符串构建
-    - 也需要单独创建个对象，并且用方法实现运算add加、subtract减法、multiply乘法、divide除法(用BigDecimal.ROUND_CEILING保存精度)
+    - 也需要单独创建个对象，并且用方法实现运算add()加、subtract()减法、multiply()乘法、divide()除法(用BigDecimal.ROUND_CEILING保存精度)
 
 - Date类、Calendar、
 
 
   - Date：
 
-    - 日期精确到毫秒，SimpleDateFormat格式化解析日期，日期to文本，文本to日期+
-    - 通过毫秒数得到日期，parse，把字符串日期转Date
+    - 日期精确到毫秒，SimpleDateFormat()格式化解析日期，日期to文本，文本to日期+
+    - 通过毫秒数得到日期，parse()，把字符串日期转Date
 
   - Calendar：
 
-    - 抽象类，构造器私有，用getInstance获得实例
+    - 抽象类，构造器私有，用getInstance()获得实例
     - 通过对象.get获得Calendar的一个字段
 
   - LocalDate日期、LocalTime时间、LocalDateTime日期时间、DateTimeFormatter格式化日期、Instant时间戳
 
-    - now当前时间对象，get获得字段，plus和minus可以对时间进行加减
+    - now()当前时间对象，get()获得字段，plus()和minus()可以对时间进行加减
 
 - 集合
 
 
-    - 动态保存任意多个对象，方便操作，add，remove，set，get等
+    - 动态保存任意多个对象，方便操作，add()，remove()，set()，get()等
 
 
     - 单列集合只放值，双列集合放KV对
@@ -957,7 +957,7 @@ xiaoa.num=
   - collection单列集合
 
 
-      - add添加、remove删除、size大小、isEmpty判空、clear清空、addAll添加多个、cointainsAll查找多个、removeAll
+      - add()添加、remove()删除、size()大小、isEmpty()判空、clear()清空、addAll()添加多个、cointainsAll()查找多个、removeAll()
 
 
 
@@ -1086,9 +1086,9 @@ HashMap底层维护Node类型的table，默认为null
   - sort(List，Comparator)，按照比较器进行排序
   - swap(List,i,j)，交换元素
   - max(Collection)，返回自然顺序最大值
-  - min最小
+  - min()最小
   - frequency(集合，对象)，返回出现次数
-  - copy复制
+  - copy()复制
   - replaceAll(List list，Obj old，Obj new)，替换
 - 类方法
 - 类方法
