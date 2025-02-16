@@ -1130,15 +1130,62 @@ HashMap底层维护Node类型的table，默认为null
     - 没有指定默认就是Object
 
 - JUnit单元测试
+
+- Java画图
+
+  - Component提供两个和绘图相关最重要的方法；
+  - paint(Graphics g)绘制组件的外观
+  - repaint()刷新组件的外观
+  - 画图过程：
+
+  - 1、画图类继承Jpanel类，画图形，是一个画板，重写绘图方法pain，一定要保留super.paint(g)；
+
+    - Graphics提供了很多画图的方法，g.drawXXX，画图形
+
+  - 2、主类需要继承JFrame，Java画图框架，图形都在框架内，新建一个对象就可以画图
+
+  - 3、需要在JFrame框架内，定义画板对象；在构造方法中把画板添加到窗口中，设置大小，设置Visible可视化；
+
+  - 当组件第一次在屏幕上显示的时候，程序会自动调用paint来绘制组件，以下情况会出现调用paint()
+
+  - 4种情况：第一次在屏幕上显示的时候、窗口大小发生变化，最小化再最大化的时候，repaint的时候
+
+  - 
+
+  - Graphics类相当于是一个画笔
+
+    - 画直线：drawLine(x1,y1,x2,y2)
+    - 画矩形边框 drawRect(x,y,width,height)
+    - 画圆形边框 drawOval(x,y,width,height)
+    - 填充矩形 fillRect(x,y,width,height)
+    - 填充椭圆 fillOval(x,y,width,height)
+    - 画图片 drawImage(img,x,y)
+    - 画字符串 drawString(str,x,y)
+    - 画笔字体 setFont(font)
+    - 画笔颜色 setColor(color)
+
+    
+
+- Java事件处理机制
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
+
 - 类方法
-- 类方法
+
 - 类方
