@@ -1240,7 +1240,7 @@ HashMap底层维护Node类型的table，默认为null
 
   - 如果想让子线程在主线程结束之后也结束，就需要设置为守护线程，setDaemon(True)
 
-- ##### 线程的7大状态：
+- #### 线程的7大状态：
 
   - Thread.State枚举表示了线程的几种状态
   - NEW，未启动，新创建的
@@ -1263,7 +1263,7 @@ HashMap底层维护Node类型的table，默认为null
   - 还可以在方法中，表示整个方法为同步方法
     - public synchronized void fun(){}
   
-- ##### 互斥锁
+- #### 互斥锁
 
   - Java用对象互斥锁来保证共享数据操作的完整性，每个对象都对应于一个互斥锁标记，在任一时刻，只能有一个线程访问该对象
   - 关键字synchronized来于对象的互斥锁联系，当某个对象用synchronized修饰的时候，表示该对象在任一时刻只能由一个线程访问
@@ -1303,9 +1303,34 @@ HashMap底层维护Node类型的table，默认为null
 
   - 当执行同步的时候，其它线程调用了当前线程的suspend方法，挂起了线程，也不会释放当前锁，尽量避免使用suspend和resume方法
 
-- 类方法
+- #### IO流
 
-- 类方法
+  - 文件在程序中是以流的方式操作，java程序在内存中，文件在磁盘中，磁盘到内存是输入流，内存到磁盘是输出流
+  - 创建文件：
+    - File file = new File(filePath)   直接填文件创建的路径；然后file.createNewFile()
+    - File parentFile = new File("e:\ \ \");    String fileName = "new.txt"    File file = new File(parentFile,fileName);  父目录+子文件
+    - File parentFile = new File("e:\ \ \");    String fileName = "new.txt"    File file = new File(parentFile,fileName);   父目录+子路径
+  - 获取文件信息
+    - getName()；获取名字
+    - getAbsolutePath；绝对路径
+    - getParent；父目录
+    - length；大小（字节）
+    - exists；是否存在
+    - isFile；是否为文件
+    - isDirectory；是否为目录
+  - 目录的操作和文件删除，Java中目录也是文件
+    - mkdir()创建一级目录；mkdirs()创建多级目录；
+
+- ##### Java IO流原理
+
+  - Java程序中对于数据的输入/输出是以流stream的方式读取
+  - java.io包中提供了各种流的类和接口
+  - 按操作数据单位不同分为：字节流8bit，字符流
+  - 按数据流的流向：输入、输出
+  - 输入流       字节流（二进制文件） InputStream      字符流（文本文件）Reader
+  - 输出流       字节流                            OutputStream             字符流         Writer
+  - 都是抽象类，所以要创建实现子类
+  - 文件和流的区别，文件是数据存储形式，流是传输形式
 
 - 类方法
 
