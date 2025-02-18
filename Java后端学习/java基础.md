@@ -620,14 +620,14 @@ xiaoa.num=
 
 
 
-- main方法
+- ##### main方法
 
   - JAVA虚拟机调用，所以main方法必须是public
   - java虚拟机调用main方法不需要创建对象，所以是static类型的
   - args字符串数组用来保存java执行命令的参数
   - main是静态方法，所以可以使用静态变量和方法
   
-- 代码块
+- ##### 代码块
 
   - [修饰符]{代码}；
   - 修饰符要写只能写static
@@ -644,13 +644,13 @@ xiaoa.num=
     - 子类构造器
     - 构造器其实隐藏了super()和调用普通代码块的语句
   
-- 类在什么时候加载？
+- ##### 类在什么时候加载？
 
   - 创建对象实例时（只加载一次）
   - 创建子类对象实例时，父类会被加载
   - 使用类的静态成员（静态方法，静态属性）
   
-- 单例设计模式
+- ##### 单例设计模式
 
   - 静态方法和属性的经典使用
   - 单个对象实例从头用到尾
@@ -660,25 +660,28 @@ xiaoa.num=
   - 懒汉式：
     - 构造器私有化、内部定义一个私有属性对象、向外暴露一个公共方法getInstance，在getInstance方法内，如果检查属性对象是null就创建对象，返回对象，保证单例
   
-- final关键字
+- ##### final关键字
+  
   - 修饰类、属性、方法、局部变量
   - 不希望类被继承、不希望被子类覆盖或重写、不希望某个属性的值被修改、不希望某个变量被修改
   - 定义时必须初始化，但是可以在构造器，代码块中赋值
   - final类不能被继承，但是可以实例化对象
   - 如果不是final类，但是如果方法是final，是可以被继承的
   - 如果一个类已经是final类，就不用再把方法变成final方法
-
-- 抽象类
+  
+- #### 抽象类
+  
   - 父类的某些方法需要声明，但是不知道怎么实现的时候，可以用抽象方法，这个类叫抽象类
   - 没有方法体：
     - abstract void eat();   如果存在抽象方法即要声明为抽象类   abstract class
     - abstract只能修饰类和方法，如果一个类继承了抽象类就必须实现抽象类的所有方法，否则自己也是一个抽象类
     - 抽象方法不能被private final static来修饰，因为这些修饰和重写相违背
     - 抽象类重点是设计，子类继承后实现方法具体内容，抽象类可以没有抽象方法
-
-- 抽象模版模式
+  
+- ##### 抽象模版模式
+  
   - 把公共代码放在父类继承，个性化任务用抽象类，子类重写实现各自功能
-
+  
 - 接口interface，给出一些没有实现的方法，封装到一起，在某个类具体使用的时候再把方法写出来
 
   - ```java
@@ -713,7 +716,7 @@ xiaoa.num=
 
   - 接口机制是对继承机制的补充，子类如果需要扩展功能需要实现接口，接口更灵活
 
-- 接口的多态特性
+- ##### 接口的多态特性
 
   - 1、多态参数：接口的引用可以指向实现了接口类的对象
 
@@ -723,7 +726,7 @@ xiaoa.num=
 
   - 一个类可以同时继承和实现接口
 
-- 内部类
+- ##### 内部类
 
   - **类的五大成员：构造器、属性、方法、代码块、内部类**
 
@@ -808,7 +811,7 @@ xiaoa.num=
   - @Deprecated：某个方法已经过时，但是可以用
   - @SuppressWarnings({})：抑制编译器警告，当不想看到编译器警告的时候用这个注解，在{}内填写不想显示的信息
   
-- 异常
+- #### 异常
 
   - 利用try-catch机制
   - try{代码块}catch(Exception e){getmessage}
@@ -827,7 +830,7 @@ xiaoa.num=
     - throw和throws的区别：
     - throws是异常处理的一种方式(方法声明中)，后跟异常类型；throw是生成异常对象的关键字(方法体内)，后跟异常对象；
   
-- 包装类
+- #### 包装类
 
   - 基本数据类型对应的包装类，具有类的特征，可以调用类中的方法
   - Boolean、Character、Byte、Short、Integer、Long、Float、Double，包装类是number的子类
@@ -848,14 +851,14 @@ xiaoa.num=
     - toLowerCase('a')  转小写
     - 只要是基本数据类型，==判断的是值，否则是判断引用对象是否一个
   
-- String类
+- #### String类
 
   - String字符串用来保存字符序列，可以用数组初始化，不能被继承，字符串对象指定之后不能改变地址，但是可以改变字符串内容，不可变，如果String是相同对象，返回的就是同一个地址
   - 1、直接赋值：先看常量池里面有没有，有就指向地址，没有就创建再指向
   - 2、调用构造器创建String对象：先在堆里面创建空间，内部有value属性，然后再指向常量池，没有则创建，最终指向的是堆里面的空间
   - 如果是字符串相加，是在常量池新增字符串对象，如果是对象相加，是在堆里面创建对象
   - String常用方法：
-    - equals()，判断值相等
+    - str.equals()，判断值相等
     - equalsIgnoreCase()，忽略大小写判断是否相等
     - length()，长度
     - indexOf()，字符第一次出现的下标
@@ -866,9 +869,9 @@ xiaoa.num=
     - concat()，拼接
     - replace()，代替
     - split()，以X分隔，返回数组
-    - toCharArray()，转成字符数组
+    - str.toCharArray()，转成字符数组
   
-- StringBuffer类，线程安全
+- #### StringBuffer类，线程安全
 
   - 可变的字符序列，里面放的是字符串变量，value放在堆内，大小可以变
   - String->StringBuffer可以指定char[]大小，StringBuffer stringbuff = new StringBuffer(100)；
@@ -876,7 +879,7 @@ xiaoa.num=
   - 常用方法：
     - append、delete、replace、insert、length
   
-- StringBuilder类
+- #### StringBuilder类
 
   - 单线程使用，线程不安全
   - 和StringBuffer兼容，用在字符串缓冲区被单个线程使用的时候，大多数时候比StringBuffer快，主要用append和insert方法
@@ -884,7 +887,7 @@ xiaoa.num=
   - 单线程用StringBuilder，多线程用StringBuffer
   - 字符串很少修改用String
 
-- Math类
+- #### Math类
 
   - 基本数学运算方法
 
@@ -897,24 +900,25 @@ xiaoa.num=
     - random() 返回0-1之间的double随机数  0<=  x<1  a<=<=b的随机数：(int)(a+Math.random()*(b-a+1))
     - max()、min()最大最小
 
-- Arrays类
+- #### Arrays类
 
   - Arrays.toString() ，显示数组信息
   - Arrays.sort()，排序，底层快排
   - Arrays.binarySearch(),二分查找，要求必须有序
   - Arrays.copyOf(),复制数组
   - Arrays.fill()，用xx填充，覆盖数组
-  - Arrays.equals() ，比较两个数组元素一致
+  - Arrays.equals(a,b) ，比较两个数组元素一致
   - Arrays.asList() ， 把数组转化成列表
 
-- System类
+- #### System类
+  
   - 常用方法：
     - exit()，退出当前程序
     - arraycopy()，复制数组
     - currentTimeMillis()，返回当前时间距离1970-1-1的毫秒数
     - gc()，垃圾回收机制
   
-- 大数类
+- #### 大数类
 
 
   - BigInteger，运算不能用+-*/
@@ -944,7 +948,7 @@ xiaoa.num=
 
     - now()当前时间对象，get()获得字段，plus()和minus()可以对时间进行加减
 
-- 集合
+- #### 集合
 
 
     - 动态保存任意多个对象，方便操作，add()，remove()，set()，get()等
@@ -954,7 +958,7 @@ xiaoa.num=
 
 
 
-  - collection单列集合
+  - ##### collection单列集合
 
 
       - add()添加、remove()删除、size()大小、isEmpty()判空、clear()清空、addAll()添加多个、cointainsAll()查找多个、removeAll()
@@ -983,29 +987,32 @@ while(iter.hasNext()){
 ​      
 
   - (1) List，有序，添加顺序和取出顺序一致，并且元素可以重复，add，remove，set，get按索引，subList，查改较多的用ArrayList，增删较多的用LinkedList，可以通过索引获得元素，是Collection的子接口
-    - ArrayList
+    - ##### ArrayList
 
       - 可以存null，是由数组实现的，基本等同于vector，线程不安全，所以多线程不建议使用ArrayList，底层代码扩容机制：无参：容量初始为0，->10，再变为1.5倍，有参：容量指定，如需扩容直接1.5倍
-    - LinkedList
+    - ##### LinkedList
+      
       - 实现了双向链表和双端队列，元素可以重复，可以null，线程不安全，没有实现同步
       - 底层是双向链表，每个节点node，删除添加不是数组完成的，效率较高，first和last指针
-
-    - Vector
+      
+    - ##### Vector
+      
       - 底层也是数组，是线程同步，线程安全的synchronized，扩容如果是无参，默认10，满了2倍，有参直接2倍扩容
 
 
   - (2) Set，无序，添加和取出顺序不一样，没有索引，不允许重复元素、所以对多包含一个null，也是Collection的子接口，但是不能使用索引获取元素，可以用增强for和迭代器循环，但是取出的顺序是固定的
     
-    - HashSet
+    - ##### HashSet
     
       - 实现了set接口，底层实际上是HashMap，不保证存取顺序一致，HashSet在底层扩容是用链式哈希表，数组+链表，Java8中哈希表链表长度>8，tabl>64会变成红黑树
       - 添加逻辑：先比较哈希值(hashCode)，哈希值相同的会放在同一个地址下的链表，然后判断equals是不是值相同，相同就添加，否则添加，所以String重写equals方法和hashCode方法，所以new String的时候就无法添加，其他类也是一样，如果重写就无法添加new对象
       - LinkedHashSet，继承HashSet，底层是LinkedHashMap，底层维护数组+双向链表，依旧根据元素的hashCode决定存放位置，通过底层的双向链表保证了元素的次序，不允许添加重复元素
-    - TreeSet
+    - ##### TreeSet
+      
       - 排序，在用无参构造器初始化的时候仍然是无序；使用TreeSet提供的构造器可以传入一个比较器(匿名内部类)，并且指定顺序，底层是TreeMap，通过comparable实现比较排序
 
 
-- Map双列集合，K-V对
+- #### Map双列集合，K-V对
 
   - 用于保存具有映射关系的Key-value；map中的Key-value可以是任何对象，被封装在HashMap$Node中；Key不允许重复，实现原理和HashSet一样；但是Value可以重复，key关键字相当于索引，key和value都可以为null但是key只能有一个，value可以多个
   
@@ -1030,9 +1037,20 @@ while(iter.hasNext()){
 ```java
 - HashMap
 
-- put添加、添加key相同的value会覆盖上一个value，经常用String作为key；get(key)获取对应的value；
-- size()，isEmpty()，containsKey()查找是否存在，containsValue()，remove(key)或者kv对、putAll(Map)、clear()、keySet关键字集合、values()值的集合、equals判断相同，getOrDefault返回value、entrySet返回entry集合
-- 遍历方法：1、获得keySet，通过key增强for获得value；2、迭代器获得key，迭代get；3、把所有value取出，可以使用所有的Collection方法；也可以通过entrySet使用增强for和迭代器，向下转型成Map.entry
+- put添加、添加key相同的value会覆盖上一个value，经常用String作为key；
+    get(key)  获取对应的value；
+    size()  大小
+    isEmpty()    判空
+    containsKey()	查找key是否存在，
+    containsValue() 查找值是否存在，
+    remove(key)或者kv对、
+    putAll(Map)、clear()、
+    keySet关键字集合、values()值的集合、
+    equals判断相同，
+    getOrDefault返回value、
+    entrySet返回entry集合
+
+    - 遍历方法：1、获得keySet，通过key增强for获得value；2、迭代器获得key，迭代get；3、把所有value取出，可以使用所有的Collection方法；也可以通过entrySet使用增强for和迭代器，向下转型成Map.entry
 HashMap没有实现同步机制，所以是线程不安全的
 
 HashMap底层维护Node类型的table，默认为null
@@ -1066,7 +1084,7 @@ HashMap底层维护Node类型的table，默认为null
 
 一组对象用Collection接口，允许重复用List，增删改较多用LinkedList，查找较多用ArrayList
 
-​						不允许重复用Set，无序用HashSet(底层是HashMap)，排序用TreeSet，插入和取出顺序一致用LinkedHashSet
+##### 						不允许重复用Set，无序用HashSet(底层是HashMap)，排序用TreeSet，插入和取出顺序一致用LinkedHashSet
 
 一对键值对用Map
 
@@ -1078,7 +1096,8 @@ HashMap底层维护Node类型的table，默认为null
 
 ​	读取文件用Properties
 
-- Collection工具类
+- ##### Collection工具类
+  
   - 操作Set、List和Map等集合的工具类，静态方法对集合元素进行排序、查询修改
   - reverse(List)，反转
   - shuffle(List)，对List内元素随机排序，打乱
@@ -1091,7 +1110,7 @@ HashMap底层维护Node类型的table，默认为null
   - copy()复制
   - replaceAll(List list，Obj old，Obj new)，替换
   
-- 泛型
+- #### 泛型
 
   - 编译的时候检查对象类型，在类声明或者实例化的时候，指定好需要的具体类型即可，参数化类型，解决数据安全性问题
 
@@ -1129,9 +1148,9 @@ HashMap底层维护Node类型的table，默认为null
     - 泛型接口的类型，在继承接口或者实现接口的时候确定
     - 没有指定默认就是Object
 
-- JUnit单元测试
+- ##### JUnit单元测试
 
-- Java画图
+- ##### Java画图
 
   - Component提供两个和绘图相关最重要的方法；
   - paint(Graphics g)绘制组件的外观
@@ -1166,9 +1185,123 @@ HashMap底层维护Node类型的table，默认为null
 
     
 
-- Java事件处理机制
+- #### Java事件处理机制
 
-- 类方法
+  - Java时间处理是”委派事件模型“，事件发生的时候会产生事件对象，把信息传递给事件监听者处理，信息其实是java.awt.event中的某个类创建的对象，称之为事件的对象
+  - 事件源->事件->时间监听者->事件处理方法
+  - 事件源：产生事件的对象，按钮、窗口等；
+  - 事件：承载事件源状态改变时的对象，比如键盘事件、鼠标事件、窗口事件等等，会产生一个事件对象，保存很多信息，比如KeyEvent，含有按下键盘的Code值，java.awt.event包和javax.swing.event中包含了各种事件类型
+
+- #### 多线程基础
+
+  - 进程：运行的程序，进程是程序一次的执行过程，或者是正在运行的一个程序，是动态的过程，有自身产生、存在和消亡的过程，操作系统会为进程分配内存空间
+  - 线程是由进程创建的，是进程的一个实体。一个进程可以有很多个线程
+  - 进程是资源分配的基本单位，线程是调度的基本单位
+  - 单线程：同一个时刻只允许执行一个线程
+  - 多线程：同一时刻多个线程同时执行
+  - 并发：同一个时刻，多个任务交替执行，因为切换速度快，所以造成貌似同时的错觉，单核CPU实现多任务就是并发
+  - 并行：同一个时刻，多个任务同时执行，多核CPU可以实现并行
+  - 并发和并行可能同时存在
+  - runtime.getAvaibaleProcessors()，获得当前电脑可用CPU数目
+
+- #### Java线程创建的两种方式
+
+  - 1、继承Thread类，重写run方法
+
+    - 继承Thread就可以当线程使用，重写run方法，实现自己的业务代码，run thread类是实现了Runnable接口的run方法，对象.start启动线程，真正实现线程的是start()方法，start方法中可以有很多个start0()方法
+
+  - 2、实现Runnable接口，重写run方法，但是实现runnable接口之后，是没有start方法的，不能对象.start()，需要创建thread，把子线程对象放进去，然后由thread对象创建，Thread thread = new Thread(dog)；thread.start()；底层实现了静态代理；
+
+  - runnable接口适合多线程共享一个资源的情况，避免了单继承的限制
+
+  - #### 多线程机制：
+
+  - 进程中会有一个main线程，main线程启动一个子线程 Thread-0，主线程不会阻塞，会继续执行。主线程和子线程会交替执行，如果是单核就是并发，多核是并行
+
+  - jconsole，java监视和管理平台，所有的线程结束了，进程才会挂掉，并且run方法只是一个主线程的方法，执行完才向下串行，而start，是启动子线程，多线程实现
+
+  - ##### 线程终止：怎么通知线程退出
+
+  - 1、线程完成任务之后自动退出
+
+  - 2、通过使用变量的方式，在run方法中停止线程，终止
+
+  - 线程常用方法：
+
+  - setName设置线程名称；getName返回该线程的名称；start启动线程，java虚拟机会底层调用start0方法；run调用线程对象的run方法；setPriority更改线程的优先级1-5-10；getPriority获得线程的优先级；sleep休眠毫秒；interrupt中断线程，中断不代表结束，一般中断休眠，唤醒；
+
+  - 线程yield，礼让；让出cpu，让其他线程执行，但礼让的时间不确定，所以也不一定礼让成功
+
+  - 线程插队。join，插队之后会让该线程执行完，然后再去执行当前线程的剩余任务
+
+- ###### 用户线程，也叫工作线程，任务执行完，或者通知方式结束
+
+- ###### 守护线程，为工作线程服务的，当所有工作线程结束，守护线程才结束DaemonThread
+
+  - 如果想让子线程在主线程结束之后也结束，就需要设置为守护线程，setDaemon(True)
+
+- ##### 线程的7大状态：
+
+  - Thread.State枚举表示了线程的几种状态
+  - NEW，未启动，新创建的
+  - Runnable，可运行状态，不一定真正运行，取决于操作系统
+    - Ready就绪状态
+    - Running运行状态
+  - TimedWaiting 超时等待，sleep
+  - Waiting可能被插队或者wait的等待
+  - Blocked，进入同步代码块的锁
+  - TERMINATED终止状态
+
+- ##### 线程同步
+
+  - 在多线程编程中，一些敏感数据不允许被多个线程同时访问，此时就使用同步访问技术，保证数据在如何同一时刻，最多有一个线程访问，以保证数据的完整性
+  - 即当有一个线程对内存进行操作的时候，其它线程都不可以对这个内存地址进行操作，直到该线程完成操作，其它线程才能对内存地址操作
+
+- ##### Synchronized
+
+  - 同步代码块
+  - 还可以在方法中，表示整个方法为同步方法
+    - public synchronized void fun(){}
+  
+- ##### 互斥锁
+
+  - Java用对象互斥锁来保证共享数据操作的完整性，每个对象都对应于一个互斥锁标记，在任一时刻，只能有一个线程访问该对象
+  - 关键字synchronized来于对象的互斥锁联系，当某个对象用synchronized修饰的时候，表示该对象在任一时刻只能由一个线程访问
+  - 同步的局限性：导致程序的执行效率很低
+  - 同步方法（非静态的）的锁可以是this也可以是其他对象（要求是同一个对象）
+  - 同步方法（静态的）的锁是当前类本身
+    - 在方法当中，对代码块，方法可以用synchronized(this){}修饰，表示这部分代码块或者方法，实现了同步方法，即上锁；这时锁在this对象
+    - 非静态的方法和代码块，也可以用对象上锁，synchronized(object){}
+    - 静态方法的锁是当前类本身：public synchronized static void m1(){} 锁是加在 SellTicket03.class   
+    - 如果是静态方法中的代码块上锁，应该在synchronized修饰后加当前类，synchronized(){当前类名.class}  
+    - this是非公平锁
+
+- ##### 互斥锁使用注意事项：
+
+  - 同步方法如果没有使用static修饰，默认锁对象是this
+  - 如果方法使用了static修饰，默认锁对象是：当前类.class
+  - 实现锁的步骤：
+    - 需要先分析上锁代码，选择同步代码块或者同步方法，然后保证多个线程的锁对象是同一个即可
+
+- ##### 线程死锁：
+
+  - 多个线程都占用了对方的锁资源，但是不肯相让，导致了死锁
+
+- ##### 释放锁
+
+  - 线程的同步方法、同步代码块执行结束
+
+  - 在同步方法、同步代码块遇到break、return
+
+  - 遇到error或者exception
+
+  - 执行了wait()方法，当前线程暂停
+
+  - ##### 以下操作不会释放锁：
+
+  - 在执行同步的时候，程序调用了Thread.sleep()，Thread.yield()，程序只会暂停当前线程执行，不会释放锁
+
+  - 当执行同步的时候，其它线程调用了当前线程的suspend方法，挂起了线程，也不会释放当前锁，尽量避免使用suspend和resume方法
 
 - 类方法
 
