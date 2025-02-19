@@ -1018,6 +1018,11 @@ while(iter.hasNext()){
   
   - ```java
     1、通过keySet返回key集合，然后增强for循环遍历getvalue
+         for (String key : scoreMap.keySet()) {
+                // 根据键获取对应的值
+                Integer value = scoreMap.get(key);
+                System.out.println("Key: " + key + ", Value: " + value);
+            }
     2、entryset迭代器
     Set entrySet = map.entrySet();
             Iterator iterator = entrySet.iterator();
@@ -1029,6 +1034,11 @@ while(iter.hasNext()){
         Collection collection = map.values(); // 返回value集合
             for(Object value:collection){
                 System.out.println(value);
+            }
+    也可以直接增强遍历：
+        // 通过 values() 方法获取值的集合，然后使用增强 for 循环遍历
+            for (Integer value : scoreMap.values()) {
+                System.out.println("Value: " + value);
             }
     ```
     
@@ -1047,7 +1057,7 @@ while(iter.hasNext()){
     putAll(Map)、clear()、
     keySet关键字集合、values()值的集合、
     equals判断相同，
-    getOrDefault返回value、
+     getOrDefault(Object key, V defaultValue)；返回value、defaultValue：如果指定的键在 Map 中不存在时返回的默认值，类型为 V
     entrySet返回entry集合
 
     - 遍历方法：1、获得keySet，通过key增强for获得value；2、迭代器获得key，迭代get；3、把所有value取出，可以使用所有的Collection方法；也可以通过entrySet使用增强for和迭代器，向下转型成Map.entry
@@ -1331,6 +1341,8 @@ HashMap底层维护Node类型的table，默认为null
   - 输出流       字节流                            OutputStream             字符流         Writer
   - 都是抽象类，所以要创建实现子类
   - 文件和流的区别，文件是数据存储形式，流是传输形式
+  - FileInputStream需要创建对象，字节是需要循环读取的，因为一个文件不止一个字节，读取完了要关闭
+  - 
 
 - 类方法
 
