@@ -864,12 +864,13 @@ xiaoa.num=
     - indexOf()，字符第一次出现的下标
     - lastIndexOf()，字符最后一次出现的下标
     - substring(x,y)，截取指定范围的子串
-    - trim()去掉前后空格
+    - trim()，去掉前后空格
     - charAt()，获取某索引处的字符
     - concat()，拼接
-    - replace()，代替
-    - split()，以X分隔，返回数组
+    - replace()，代替；str.replace(old, new[, count])，新串替代子串，会返回一个新串
+    - split(“X”)，以X分隔字符串，返回字符串数组
     - str.toCharArray()，转成字符数组
+    - ##### JAVA尽量开辟新数组来操作字符串
   
 - #### StringBuffer类，线程安全
 
