@@ -909,7 +909,7 @@ xiaoa.num=
   - Arrays.copyOf(),复制数组
   - Arrays.fill()，用xx填充，覆盖数组
   - Arrays.equals(a,b) ，比较两个数组元素一致
-  - Arrays.asList() ， 把数组转化成列表
+  - Arrays.asList(x) ， 把数组x转化成列表
 
 - #### System类
   
@@ -962,7 +962,7 @@ xiaoa.num=
   - ##### collection单列集合
 
 
-      - add()添加、remove()删除、size()大小、isEmpty()判空、clear()清空、addAll()添加多个、cointainsAll()查找多个、removeAll()
+      - add()添加、remove()删除、size()大小、isEmpty()判空、clear()清空、addAll()添加多个、cointainsAll()查找多个、removeAll()，
 
 
 
@@ -984,13 +984,14 @@ while(iter.hasNext()){
 }
 ```
 
+#####       除了 `ArrayList`，像 `LinkedList`、`HashSet` 等实现了 `Collection` 接口的集合类，同样可以使用toArray()转换为数组。
 
-​      
-
-  - (1) List，有序，添加顺序和取出顺序一致，并且元素可以重复，add，remove，set，get按索引，subList，查改较多的用ArrayList，增删较多的用LinkedList，可以通过索引获得元素，是Collection的子接口
+  - (1) List，有序，添加顺序和取出顺序一致，并且元素可以重复，add()，remove()，set()，get()按索引，subList，查改较多的用ArrayList，增删较多的用LinkedList，可以通过索引获得元素，是Collection的子接口
     - ##### ArrayList
 
       - 可以存null，是由数组实现的，基本等同于vector，线程不安全，所以多线程不建议使用ArrayList，底层代码扩容机制：无参：容量初始为0，->10，再变为1.5倍，有参：容量指定，如需扩容直接1.5倍
+      
+      - ##### ArrayList可以转数组，`toArray()`
     - ##### LinkedList
       
       - 实现了双向链表和双端队列，元素可以重复，可以null，线程不安全，没有实现同步
