@@ -903,13 +903,13 @@ xiaoa.num=
 
 - #### Arrays类
 
-  - Arrays.toString() ，显示数组信息
-  - Arrays.sort()，排序，底层快排
+  - ##### Arrays.toString() ，显示数组信息，如果要正确输出多维数组的所有元素，需要使用 `Arrays.deepToString()` 方法。
+  - ##### Arrays.sort()，排序，底层快排
   - Arrays.binarySearch(),二分查找，要求必须有序
   - Arrays.copyOf(),复制数组
   - Arrays.fill()，用xx填充，覆盖数组
-  - Arrays.equals(a,b) ，比较两个数组元素一致
-  - Arrays.asList(x) ， 把数组x转化成列表
+  - ##### Arrays.equals(a,b) ，比较两个数组元素一致
+  - ##### Arrays.asList(x) ， 把数组x转化成列表
 
 - #### System类
   
@@ -991,7 +991,12 @@ while(iter.hasNext()){
 
       - 可以存null，是由数组实现的，基本等同于vector，线程不安全，所以多线程不建议使用ArrayList，底层代码扩容机制：无参：容量初始为0，->10，再变为1.5倍，有参：容量指定，如需扩容直接1.5倍
       
-      - ##### ArrayList可以转数组，`toArray()`
+      - ##### ArrayList可以转数组，`toArray()`；list.toArray(new Integer[0]);
+      
+      - ```java
+        传入指定类型数组，返回对应类型数组
+                Integer[] integerArray = list.toArray(new Integer[0]);
+        ```
     - ##### LinkedList
       
       - 实现了双向链表和双端队列，元素可以重复，可以null，线程不安全，没有实现同步
