@@ -986,6 +986,8 @@ while(iter.hasNext()){
 
 #####       除了 `ArrayList`，像 `LinkedList`、`HashSet` 等实现了 `Collection` 接口的集合类，同样可以使用toArray()转换为数组。
 
+##### list，集合的有序子类，数组，可以用 Collections.reverse(list);，反转数组，
+
   - (1) List，有序，添加顺序和取出顺序一致，并且元素可以重复，add()，remove()，set()，get()按索引，subList，查改较多的用ArrayList，增删较多的用LinkedList，可以通过索引获得元素，是Collection的子接口
     - ##### ArrayList
 
