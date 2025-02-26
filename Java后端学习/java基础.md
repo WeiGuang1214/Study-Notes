@@ -995,7 +995,7 @@ while(iter.hasNext()){
       
       - ```java
         传入指定类型数组，返回对应类型数组
-                Integer[] integerArray = list.toArray(new Integer[0]);
+                Integer[] integerArray = list.toArray(new Integer[0]);//整数类型一维数组
         ```
     - ##### LinkedList
       
