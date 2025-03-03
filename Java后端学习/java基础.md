@@ -993,7 +993,7 @@ while(iter.hasNext()){
 
       - 可以存null，是由数组实现的，基本等同于vector，线程不安全，所以多线程不建议使用ArrayList，底层代码扩容机制：无参：容量初始为0，->10，再变为1.5倍，有参：容量指定，如需扩容直接1.5倍
       
-      - ##### ArrayList可以转数组，`toArray()`；list.toArray(new Integer[0]);
+      - #### ArrayList可以转数组，`toArray()`；list.toArray(new Integer[0]);传入指定类型数组，返回对应类型数组
       
       - ```java
         传入指定类型数组，返回对应类型数组
