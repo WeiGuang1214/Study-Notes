@@ -878,7 +878,7 @@ xiaoa.num=
   - String->StringBuffer可以指定char[]大小，StringBuffer stringbuff = new StringBuffer(100)；
   - toString也可以转成字符串，也可以用String的构造器
   - 常用方法：
-    - append、delete、replace、insert、length
+    - ##### append()、delete()、replace()、insert()、length()
   
 - #### StringBuilder类
 
@@ -887,6 +887,16 @@ xiaoa.num=
   - 大量字符串修改用StringBuffer或StringBuilder
   - 单线程用StringBuilder，多线程用StringBuffer
   - 字符串很少修改用String
+  - ##### toString()，转为String对象
+  - StringBuilder sb = new StringBuilder("Hello");
+
+    ##### sb.deleteCharAt(sb.length() - 1); *// 删除最后一个字符*
+
+    ##### System.out.println(sb.toString()); *// 输出: Hell*
+  - ##### sb.delete(sb.length() - 2, sb.length()); *// 删除最后两个字符*
+  - 
+
+    
 
 - #### Math类
 
