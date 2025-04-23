@@ -203,3 +203,13 @@
 拉取pull(一键fetch+merge)
 
 git pull remote-name branch-name
+
+##### 解决合并冲突
+
+​	先pull，合并到本地最新更改，解决冲突，再push到云
+
+#### IDEA结合GIT使用
+
+​	基于提交点创建分支，new branch
+
+​	
