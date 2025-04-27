@@ -32,9 +32,9 @@
 
 ​	versin：当前项目版本号
 
-配置本地仓库（下载仓库）
+### 配置本地仓库（jar包下载位置）
 
-配置阿里镜像仓库
+### 配置阿里镜像仓库（下载来源）
 
 在mvnrepository.com中找
 
@@ -57,3 +57,29 @@ project下
 ​		--resources配置文件
 
 src同层要写pom.xml配置，可以在maven下soft，jar包打开，找pom文件复用，写项目信息和依赖包
+
+#### Maven项目命令（主要记idea的使用）了解流程即可
+
+```cmd
+mvn compile //下载插件，编译
+mvn clean //清理编译完成的东西
+mvn test  //下载测试插件
+mvn package //打包
+mvn install //安装到本地
+```
+
+### 原型创建工程(IDEA生成)
+
+##### 1、直接利用idea自带的maven骨架，导入对应的插件即可
+
+idea使用支持的版本才能做
+
+##### java的maven配置
+
+##### web的maven配置，
+
+##### 学会导包，导依赖，写xml，里面修改打包方式、项目id、版本号、当前工程依赖、具体的插件
+
+### 依赖管理
+
+### 生命周期与插件
