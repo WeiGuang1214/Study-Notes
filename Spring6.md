@@ -177,3 +177,34 @@ registry.registerBeanDefinition("userService",definition);
 ​	用@Bean注解可以自由选择构造函数
 
 ##### 	使用工厂Bean实例化-FactoryBean
+
+​	FactoryBean是一个接口，需要有一个Bean，一旦这个Bean实现FactoryBean就成为工厂Bean，可以自由选择构造函数进行实例化，创建一类Bean
+
+实现getObject-->通过Bean名字获取到的是getObject的对象，也可以通过类获得
+
+实现getObjecType-->想通过容器去获取getObject返回的对象的类型，就需返回getObject返回对象的类型
+
+```java
+@Service
+public class OrderService implements FactoryBean {
+    @Autowired
+    private IUserDao userDao;
+    @Override
+    public Object getObject() throws Exception {
+        return new UserService(userDao);
+    }
+
+    @Override
+    public Class<?> getObjectType() {
+        return null;
+    }
+}
+```
+
+```java
+public static void main(String[] args) {
+        ConfigurableApplicationContext ioc = SpringApplication.run(SpringbootDemoApplication.class, args);
+        System.out.println(ioc.getBean(OrderService.class));
+    }
+```
+
