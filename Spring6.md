@@ -109,7 +109,7 @@ public class SpringbootDemoApplication {
 
 ​	2、component注解，放在类上
 
-​	3、@Bean注解，1、通常放在配置类上，2、写在方法上，能做到比component更多的功能，从而干预bean的实例化的过程，相当于是一个实例方法，最后返回一个对象。在方法中注入的参数spring也会直接帮我们从spring容器中拿，包括在一个Bean里面获取另外一个bean，也是从容器中获取
+​	**3、@Bean注解，1、通常放在配置类上，2、写在方法上，能做到比component更多的功能，从而干预bean的实例化的过程，相当于是一个实例方法，最后返回一个对象。在方法中注入的参数spring也会直接帮我们从spring容器中拿，包括在一个Bean里面获取另外一个bean，也是从容器中获取**
 
 ​	**注意，这里通常用于把外部的jar包里面的类，装配成bean来使用，因为你无法在jar包里面用@component注解**
 
@@ -168,13 +168,15 @@ registry.registerBeanDefinition("userService",definition);
 
 ​	然后注入bean就用@Import 这个MyImportBeanDefinitionsRegister.class，这是个利用底层源码实现更多业务功能的。
 
+
+
 #### 实例化Bean
 
 ​	默认实例化方式，Bean是调用无参构造器，如果有多个构造器，依然会调用无参构造器
 
 ##### 	使用实例工厂方法实例化  @Bean
 
-​	用@Bean注解可以自由选择构造函数
+​	**用@Bean注解可以自由选择构造函数**
 
 ##### 	使用工厂Bean实例化-FactoryBean
 
@@ -207,4 +209,86 @@ public static void main(String[] args) {
         System.out.println(ioc.getBean(OrderService.class));
     }
 ```
+
+### 依赖注入DI，一定要配置成Bean才能相互注入
+
+1、@Autowired，自动注入bean
+
+​	**@Autowired可以用在参数、方法、字段、构造器**
+
+​	**a.构造函数**
+
+​		如果bean只有一个有参构造函数，是省略@Autowired，自动注入构造函数的参数
+
+​		如果有多个有参构造函数，并且没有无参构造函数，会报错，解决就是用Autowired指定一个构造函数，required会失效，
+
+​	**b.参数**
+
+​		在参数上指定Autowired，并且设置required为false，这样就指定有效，**变成不是必须注入的bean**
+
+​	        还可以在测试用例里面也可以用Autowired
+
+​	**c.方法**
+
+​		**@Autowired用在方法上，就是自动调用该方法，并且自动注入**
+
+​	Autowired是先bytype再byname去找同名bean，
+
+​	requir=false，说明不是必须的，true就是必须的bean，如果没找到就会报错
+
+​	如果通过名字还匹配不到，用@primary注解设置主要的bean去找，@Qualifier("name")手动告诉spring找什么名字的bean
+
+2、@Bean注解，注入，通过参数
+
+3、构造函数上的参数会自动注入
+
+​	@inject，也可以注入bean，但是inject要导入依赖
+
+​	**优先用：@Autowired和@Resource  会先根据名字找，再根据类型找，不依赖与框架，是JDK官方提供的注入一个bean的方式**
+
+​	
+
+#### 	**--POJO用于接受前端请求参数，或者是把数据库查询到的数据封装到pojo--**
+
+##### 但是有些属性、参数需要配置
+
+##### @Value注解：
+
+​	1、直接值（基本类型。String等等）
+
+​	@Value("具体的值")
+
+​	private string name;
+
+​	2、用外部属性赋值，@PropertySource("文件夹.properties")
+
+​	@Value($"AAA.age")
+
+​	里面都是AAA.age=xxx，直接链入
+
+​	3、springboot有一个配置文件，application.propertis，约定大于配置
+
+​	这里面可以写配置，直接获取这里面的字段
+
+​	AAA.age直接写在properties文件里面
+
+​	非springboot的属性文件，需要用@PropertySource导入classpath：
+
+​	
+
+​	spel复杂类型
+
+​	给map等类型
+
+​	@Value("#{'key':'value'}")
+
+​	
+
+**@Order注解**
+
+改变自动注入的顺序，如果Autowired注入的是List这种容器，所以List内的对象注入会有个先后顺序，
+
+
+
+
 
