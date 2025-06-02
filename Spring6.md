@@ -246,8 +246,6 @@ public static void main(String[] args) {
 
 ​	**优先用：@Autowired和@Resource  会先根据名字找，再根据类型找，不依赖与框架，是JDK官方提供的注入一个bean的方式**
 
-​	
-
 #### 	**--POJO用于接受前端请求参数，或者是把数据库查询到的数据封装到pojo--**
 
 ##### 但是有些属性、参数需要配置
@@ -282,13 +280,73 @@ public static void main(String[] args) {
 
 ​	@Value("#{'key':'value'}")
 
-​	
-
 **@Order注解**
 
-改变自动注入的顺序，如果Autowired注入的是List这种容器，所以List内的对象注入会有个先后顺序，
+​	改变自动注入的顺序，如果Autowired注入的是List这种容器，所以List内的对象注入会有个先后顺序，按数字小的排在前面 0 1这样
+
+##### 通过@DependsOn改变Bean的创建顺序
+
+​	创建bean：1、首先得把bean注入spring容器中----2、容器加载new applicationcontext----3、new A()；DI
+
+​	默认的bean创建的顺序可能不一样，所以需要认为改变
+
+​	按照bean的扫描顺序，按顺序创建
+
+​	但是如果是按component注入的，就需要@Bean下面，用@DependsOn("d")
+
+##### lazy加载Bean
+
+​	@lazy，在容器加载的时候不会去初始化这个bean，只会实例化，只有等到使用这个bean的时候才进行初始化，可以优化启动速度
+
+##### Bean的作用域@Scope
+
+​	默认单例，只会new一次对象@Scope("singleton")，节省内存空间，减少GC次数；全局范围@Scope("prototype")，可能会导致线程不安全；
+
+##### 	Bean默认是单例的，会不会有线程安全问题？
+
+​	单例和原型都有线程安全问题，如果同时对一个共享资源Bean进行读写，才会有线程安全问题，但是只要别在单例bean中声明一些共享的成员变量进行读写，也不会出现线程安全问题。
+
+##### @Conditional条件注解
+
+​	用于动态判断bean是不是生效的，指定一个实现了Condition接口的类，由matches方法返回值决定当前bean是否生效，@Conditional("MyConditional.class")，什么地方用，比如根据依赖来决定连接哪个数据库，pom.xml；
+
+##### 8、Bean的生命周期回调方法
+
+​	1、要让一个类变成一个bean，通过component或者@bean，都可以注入
+
+​	2、加载spring容器 ，new application
+
+​	3、实例化(new 一个对象，放在容器中)
+
+​	4、DI，如果有依赖注入要进行解析，@Autowired @Value
+
+##### 	5、初始化，调用初始化回调方法afterpropertiesset，由开发者来配置
+
+​		自动执行顺序：1接口，2注解，3基于initmethod
+
+​	6、最终放入spring容器中，其实是Map<beanName，bean对象>
+
+​	7、spring通过getBean("beanName")------>Map<beanName,bean对象>
+
+##### 	8、spring容器关闭，bean就会销毁(调用销毁回调方法，由程序来配置)
+
+​		自动执行顺序：1接口，2注解，3基于destorymethod
+
+##### 9、循环依赖，需要解开
+
+​	多个bean之间的初始化过程相互依赖，可能会导致死循环，循环依赖是设计缺陷，不建议使用，spring通过三级缓存解决循环依赖，只能解决单例情况下的bean循环依赖，还可以通过@lazy注解解决循环依赖问题
+
+1、代码设计层面解决：
+
+ 	1、把依赖的方法直接写在本类中	2、把依赖的方法AB都抽象出来第三方bean C	3、把依赖类的构造函数引入，如果在构造函数上使用@lazy注解
+
+## AOP，Spring面向切面编程
+
+​	理解：把切面中的代码，插入到切点，不改变原有的代码基础上，对现有业务进行增强。，也就是说额外执行切面里面的代码。
+
+​	
 
 
 
-
+​	
 
