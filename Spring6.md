@@ -344,9 +344,111 @@ public static void main(String[] args) {
 
 ​	理解：把切面中的代码，插入到切点，不改变原有的代码基础上，对现有业务进行增强。，也就是说额外执行切面里面的代码。
 
-​	
+​	<dependencies><dependencies>依赖管理，由父pom管理子模块的pom版本号，子模块只需要注入相应的依赖即可，不需要声明版本，这样就可以减少版本冲突，由父pom统一管理
+
+```java
+package com.example.aop;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+// AOP定义切面
+@Aspect
+@Component // 必须要声明为spring的bean
+public class LogAspect {
+    public void before() {
+        System.out.println("this is a before method !");
+    }
+    // 切点表达式，方法具体实现，用环绕
+    @Around("execution(* com.example.aop.UserService.*(..))") // * 表示所有的访问权限,*(..)表示所有方法，并且不需要参数
+    public void log(ProceedingJoinPoint joinPoint) throws Throwable {
+        long startTime = System.currentTimeMillis();
+        try {
+            System.out.println("this is a log method !");
+            // 执行具体方法
+            joinPoint.proceed();
+        } catch (Throwable e) {
+            e.printStackTrace();
+            System.out.println("方法异常执行");
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("this is a log method time : " + (endTime - startTime));
+    }
+}
+
+```
+
+@Aspect+@Component+通知+切点。4个要素，把额外的业务切入到现有的业务中
 
 
 
-​	
+##### @EnableAspectJAutoProxy注解
 
+​	启用AOP，没有这个注解AOP功能无法使用，SpringBoot会通过启动类自动加入这个注解配置，所以可以省略，但是还是加上。
+
+​	名称释义：
+
+​		目标对象：要增强的对象，通常会有多个，类下的所有方法
+
+​		切面：要增强的代码放入的那个类，@Aspect
+
+​		通知：Advice，放增强的代码的方法，在切面的连接点上前后所执行的方法，@Around是通用的到处可以用的通知，前，方法前；后，方法后；异常，出现了异常执行；返回通知，方法返回之前去执行。
+
+​		切点：增强的代码切入到哪些方法当中，切点表达式。
+
+​		连接点：通知和目标方法的桥梁，JoinPoint，可以获取目标方法的信息，比如参数，名字等等
+
+​		顾问：源码当中的体现
+
+​		织入：把通知切入到连接点的过程叫织入。
+
+##### 前置通知：@Before，因为明确方法之前，所以不需要手动执行目标方法
+
+##### 后置通知：@After，对应finally中的代码块，不管有没有出现异常都会执行。
+
+##### 返回通知：@AfterReturning，获取返回值，对应方法结束之前的，和return一起。方法参数需要接收返回值。
+
+##### 异常通知：@AfterThrowing，对应catch当中的代码，出现异常就不会执行返回通知，执行后置通知。获取异常信息，需要用Exception接收异常。
+
+
+
+##### 切点：
+
+1、表达式抽取成方法，切点表达式，pointcut("execution(* com.example.c4_aop.pointcut.Service.*(..))")
+
+public void pointcut(){}
+
+在后面只需要用@Before("pointcut()")即可，execution可以匹配到方法级别，within只能匹配到类这一级别。
+
+2、@execution，访问修饰符可以省略，但是不能为**，返回值一定要写，可以为***，完整的限定名：包，类
+
+​	包可以是com.ex，全部就是com.ex.*，层级任意就是com..=com.xs.ex.imple
+
+​	类：说
+
+​	指定参数就是类型就可以，所有类型参数是..，不写表示没有参数的方法
+
+3、@within，只能匹配到类级别，within(包名.类名)
+
+4、@annotation，匹配到注解粒度。比如可以记录每个方法的详细作用，比如通过反射获取一个方法的信息。
+
+需要在注入的方法上用到@RetentionPolicy注解，声明为，RUNTIME是运行时，SOURCE是java文件中，CLASS是编译过程中保留方法信息。
+
+@Target表示当前注解可以标记的地方@Target({ElementType.METHOD,ElementType.TYPE})  可以标记的地方
+
+```java
+@Pointcut("@annotation(Log)")  // 表示所有用了Log注解的方法都会匹配
+public void pointcutAnnotation(){}
+```
+如果想获取注解的值，需要在方法中加一个参数，如果要在通知的参数中绑定注解，就需要声明参数名，而不是注解类型。
+
+```java
+@Pointcut("@annotation(Log)")  // 表示所有用了Log注解的方法都会匹配，不和注解绑定用类型即可
+public void pointcutAnnotation(){}
+
+@Before("pointcut()&& pointcutWithIn()&& @annotation(log)")) // 和注解绑定需要用参数名
+public void before(joinPoint joinPoint,Log log){}
+```
