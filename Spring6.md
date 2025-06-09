@@ -452,3 +452,80 @@ public void pointcutAnnotation(){}
 @Before("pointcut()&& pointcutWithIn()&& @annotation(log)")) // 和注解绑定需要用参数名
 public void before(joinPoint joinPoint,Log log){}
 ```
+
+
+
+#### SpringAOP的底层原理-动态代理--分为JDK和CGLIB
+
+1、创建spring容器new applicationContext()
+
+2、spring把所有的bean进行创建，进行依赖注入
+
+3、spring(new $$SpringCGLIB$$0())  ,用动态代理继承bean然后创建一个对象代替原本的类
+
+4、当实现了AOP，spring会根据当前的bean创建动态代理
+
+5、把bean进行替换-->所以自动装配的类就成为new $$SpringCGLIB$$0()
+
+##### 代理模式，动态代理是运行时生成代理对象，静态代理是编译时：
+
+​	使用代理对象来增强目标对象，不修改原本对象的功能，扩展目标对象的功能，将核心业务代码和非核心公共代码分离解耦，提高代码可维护性，让被代理类专注业务降低代码复杂度。
+
+​	a、被代理类专注业务  b、代理类非核心的公共代码
+
+**JDK的动态代理，被代理的类一定要实现接口**，所以JDK只能代理实现了接口的类
+
+​	需要传入MyHandler，在myhandler里面执行目标方法，通过反射来接收，里面也可以写前置和后置增强。
+
+```java
+@Test
+public void testO{
+	IUserService UserService = (IUserService) Proxy.newProxyInstance(
+		UserService.class.getClassLoader(),
+		UserService.class.getInterfaces(),
+		new MyHandler(new UserService()) // 在myhandler中的invoke方法中写目标方法和增强方法
+	);
+	userService.add();
+	}
+}
+```
+
+##### 代理对象的生成途径：
+
+​	借助 Proxy.newProxyInstance() 方法能够创建代理对象。在创建时，需要传入类加载器、接口数组，还有 MyHandler 实例。
+
+##### 方法调用的流转过程：
+
+​	**当代理对象的方法被调用时，会触发 MyHandler 中的 invoke 方法，进而实现增强逻辑和目标方法的调用。**
+
+##### CGLIB是第三方注解，但是被Spirng整合，所以可以直接用
+
+```java
+public class TestCGlibProxy{
+	@Test
+	public void test(){
+		Enhancer enhancer = new Enhancer();
+        // 设置被代理的类
+        enhancer.setSuperclass(UserService.class); //直接继承，不需要实现接口
+        // 设置处理类
+        enhancer.setCallback();
+        // 生成代理类，继承自UserService
+        Userservice userService = (Userservice)enhancer.create();
+        
+        userService.add
+	}
+}
+// 需要写一个MyCallback继承自MethodInterceptor，在intercept方法中需要写前置方法，增强，目标对象，和后置方法
+
+目标对象：
+    返回值 = proxy.invoke(参数)，注意参数和返回值
+```
+
+#### 平常的业务开发用不到动态代理，但是不能不学，只有底层框架才会用
+
+​	spring默认jdk动态代理，springboot默认cglib动态代理
+
+静态代理弊端：代理类不需要自己声明，一个代理类只能代理一个类型
+
+### Spring声明式事务
+
