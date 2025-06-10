@@ -529,3 +529,45 @@ public class TestCGlibProxy{
 
 ### Spring声明式事务
 
+#### Spring操作数据库---MaBatis-plus
+
+JDBC连接方法需要构建链接，写DataSource，数据库的名字、密码、URL等等，然后datasource.getconnection
+
+自动配置成bean
+
+datasource是一个接口，提供了getConnection方法，更为高效、灵活、可维护的方式，不同的提供商只需要实现DataSource，程序员不需要关心链接的提供方式，可以通过DriverManager也可以通过连接池。
+
+连接池：管理数据库连接的技术，一次性创建很多连接，可以复用，避免重复创建和关闭的开销，提高效率。
+
+##### Spring单独配置DataSource
+
+```java
+@SpringBootTest(classes = SpringDataSourceTest.class) // 当前配置类
+@ComponentScan // 扫包
+@SpringBootApplication // 如果是用springboot的datasource，一定要用这个注解
+class SpringDataSourceTest {
+    @Test
+	void contextLoads(@Autowired DataSource dataSource) throws SQLException{
+		System.out.println(dataSource.getConnection());
+	}	
+}
+```
+
+```java
+// 标准做法应该是做一个配置类
+@Configuration
+public class DataSource {
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(driverClassName);
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        return dataSource;
+    }
+}
+```
+
+##### 利用JDBCTemplate连接数据库
+
