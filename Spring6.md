@@ -571,3 +571,193 @@ public class DataSource {
 
 ##### 利用JDBCTemplate连接数据库
 
+jdbc太捞了，spring提供了jdbcTemplate封装了
+
+Spring中要单独配bean，SpringBoot直接注入使用
+
+```java
+@Bean
+public JdbcTemplate jdbcTemplate(){
+	return new JdbcTemplate(dataSource());
+}
+
+@Test
+void testJDBCTemplate(@Autowired JdbcTemplate){
+    String sql = "update t_user set username=? where id=?";
+    int result = jdbcTemplate.update(sql,"xxx",1);
+}
+```
+
+#### Spring 声明式事务
+
+声明式事务，直接写注解。
+
+JDBC的编程式事务：
+
+```java
+public void test(oAutowired DataSource dataSource) {
+	try (Connection connection = dataSource.getConnection()){
+		connection.setAutoCommit(false);
+		//开启事务
+	try(Statement statement = connection.createStatement()) {
+		String sql="insert into t_user(username) values ("xxx")
+		statement.execute(sql);
+		connection.commit();  // 执行完提交
+	}
+	catch (SQLException e) {
+		connection.rollback(); // 异常了回滚
+} catch (SQLException e){
+	e.printStackTrace();
+	// 处理异常
+	}
+}
+```
+
+##### SpringBoot声明式事务：
+
+```java
+@Transactional
+@Repository
+public class UserDao{
+    @Autowired 
+    JdbcTemplate jdbcTemplate;
+    
+    public int insert(){
+        jdbcTemplate.update("insert into t_user(username) values(?)","xushu");
+    }
+}
+// 写在业务逻辑类上
+
+@Service
+public class UserService{
+    
+    @Autowired
+    UserDao userDao;
+    
+    @Transactional  // SpringBoot的事务,类似AOP，SpringBoot自动开启了
+    public int insert(){
+        return userDao.insert();
+    }
+}
+
+```
+
+##### 如果是Spring，需要单独开启事务
+
+```java
+
+// 如果是Spring，需要单独开启事务
+@EnableTransactionManagement
+// 配置事务管理器
+@Bean
+public TranscationManager transactionManager(){
+    return new DataSourceTransactionManager(dataSource);
+}
+```
+
+除了写在方法上，也可以写在类上，表示所有的方法都开启事务
+
+#### 事务配置的属性：
+
+##### 1、isolation 事务的隔离级别，是数据库提供的功能：用来解决并发事务所产生的一些问题。
+
+​	并发：同一时间、多个线程同时进行请求，对同一个数据进行读写操作，产生脏读、不可重复度、幻读
+
+脏读解决  提交读(行锁，读不会加锁)
+
+@Transaction(isolation = Isolation.READ-COMMOTTED)，不用设置，数据库自动帮我们设置了。
+
+不可重复度解决：重复读(行锁，读和写都会上锁)
+
+@Transaction(isolation = Isolation.REPEATABLE_READ)
+
+幻读解决：串行化(表锁，读和写都锁)
+
+@Transaction(isolation = Isolation.SERIALIZABLE)
+
+##### 2、事务传播行为
+
+@Transaction(propagation = REQUIRES_NEW)
+
+事务的传播性是指当一个事务方法被另外一个事务方法调用的时候，这个事务方法应该如何进行？
+
+希望外部如果存在就用外部，外部没有就自己开启
+
+常用的：
+
+​	默认REQUIRED，开启一个新的事物，有就融入，使用于增删查改
+
+​	SUPPORTS，外部不存在就不开启，如果外部存在，就融入，适用于查询
+
+​	REQUIRED_NEW ，开启一个新事务，如果外部有，仍然创建一个新事务，
+
+​	NOT_SUPPORTED，不开启新的事务，不用外部事务
+
+​	NEVER  ，不开启新事务，如果外层有，抛出异常
+
+##### 设置事务只读 readOnly=true
+
+只在查询业务中，当前数据库操作是只读，所以就会对当前的只读做优化。
+
+##### 超时属性timeout，事务最长等待时间。否则线程会阻塞
+
+##### 异常属性
+
+默认对runtimeexception都回滚，只会回滚runtimeexception，不是runtimeexception就不会回滚
+
+设置哪些异常不回滚noRollbackFor 
+
+设置哪些异常回滚rollbackFor，如果是exception.class，所有异常都回滚
+
+@Transaction(rollbackFor = exception.class)
+
+#### 事务(AOP)失效原因
+
+事务原理：动态代理
+
+AOP底层原理：动态代理
+
+userDao.add()  //  执行数据库操作
+
+失效的原因：
+
+1、保证事务的类，配置为了一个Bean，如果不是配置成Bean，就不会被Spring管理
+
+2、如果是private，也没有办法代理
+
+3、不能在事务方法中捕获异常，如果捕获了，一定要抛出，没有抛出外部事务就感知不到
+
+4、如果要让动态代理生效，必须使用动态代理的对象调用目标方法，不能通过普通对象调用‘
+
+动态代理层面的失效原因：
+
+​	直接调用本类的方法，也会失效，因为没有走动态代理的对象
+
+#### 事务失效了怎么解决？
+
+​	1、直接将本类Bean自动装配进来，但是会导致循环依赖，需要打开支持
+
+​	2、((本类)AopContext.currentProxy()).lose2()，获取当前的代理对象，并且调用方法，可以实现动态代理和事务、AOP等等
+
+​	需要配置：
+
+​	@EnableAspectJAutoProxy(exposeProxy = true)，意味着通过一个AOP动态代理对象执行方法的时候，当前动态代理对象会存在一个ThreadLocal里面，
+
+​	3、把本类的方法移动到其他的Service中，然后再把对应的Bean自动装配进来，调用该方法，也可以生效。
+
+
+
+#### Spring AOT提前优化
+
+一种编译方式，提升启动速度
+
+JIT，即Just-in-time，动态编译，运行时编译
+
+AOT，Ahead of Time，指运行前编译，是两种程序的编译方式，编译期就直接生成机器码，程序运行时直接翻译机器码
+
+实际开发用不上，除非自研底层框架
+
+
+
+
+
