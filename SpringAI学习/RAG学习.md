@@ -24,7 +24,7 @@
 ​	递归分块
 ​	分块之后要构建索引-向量和chunk，把chunk转换成向量库里面的向量，对文档内容进行高效查询。
 
-![]()
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/rag02.png)
 
 #### 如何构建索引?
 
