@@ -49,7 +49,8 @@ sage和ToolMessage的实例。
 	· 4→响应与参考完全一致。
 
 ![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/ai09.jpg)
-
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/ai10.jpg)
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/ai11.jpg)
 5、语境相关性Context Relevance:
 上下文相关性评估检索到的上下文(块或段落)是否与用户输入相关。此操作通过两次独立的“LLM-as-a-judge”提示调用完成,每次调用都会以0、1或2的等级对相关性进行评分。然后将评分转换为[0,1]的 等 级 ，并 取 平 均 值 得 出 最 终 分 数 。 分 数 越 高 , 表 示 上 下 文 与 用 户 查 询 的 匹 配 程 度 越 高
 
