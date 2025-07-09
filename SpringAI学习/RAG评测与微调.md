@@ -10,7 +10,7 @@
 	输出模型：执行后，提示会生成输出。此输出的格式由 output_model 提示对象中的变量指定。
 示例代码:
 
-图1
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/ai01.jpg)
 
 1. 清晰简洁的指示
 2. 相关的少量示例：(理想情况下为3-5个)的相关少量示例
@@ -18,18 +18,18 @@
 
 ​	评估样本是一个单一的结构化数据实例，用于评估和衡量LLM应用程序在特定场景下的性能。它代表了AI应用程序预期处理的单个交互单元或特定用例，分为单轮和多伦用例：SingleTurnSample，MultiTurnSample.
 
-图2
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/ai02.jpg)
 
-图3	
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/ai03.jpg)
 
 MultiTurnSample 表示人类、Al以及可选工具之间的多轮交互，以及预期的评估结果。它适用于表示对话代理在更复杂的交互中进行评估。在中 MultiTurnSample息，这些消息共同构成人类用户与AI系统之间的多轮对话。这些消息是类
 sage和ToolMessage的实例。
 
-图4
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/ai04.jpg)
 
-图5
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/ai05.jpg)
 
-图6
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/ai06.jpg)
 
 3、评估数据集Evaluation Dataset:
 	评估数据集是一组同质的数据样本，在Ragas中，评估数据集使用 EvaluationDataset 类来表示，该类提供了一种结构化的方式来组织和管理用于评估目的的数据样本。
@@ -37,9 +37,9 @@ sage和ToolMessage的实例。
 
 从 SingleTurnSamples 创建评估数据集：
 
-图7
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/ai07.jpg)
 
-图8
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/ai08.jpg)
 
 4、评估指标Evaluation Metrics:
 1、答案准确率ACC
@@ -48,7 +48,7 @@ sage和ToolMessage的实例。
 	· 2→响应部分与参考一致。
 	· 4→响应与参考完全一致。
 
-图9
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/ai09.jpg)
 
 5、语境相关性Context Relevance:
 上下文相关性评估检索到的上下文(块或段落)是否与用户输入相关。此操作通过两次独立的“LLM-as-a-judge”提示调用完成,每次调用都会以0、1或2的等级对相关性进行评分。然后将评分转换为[0,1]的 等 级 ，并 取 平 均 值 得 出 最 终 分 数 。 分 数 越 高 , 表 示 上 下 文 与 用 户 查 询 的 匹 配 程 度 越 高
