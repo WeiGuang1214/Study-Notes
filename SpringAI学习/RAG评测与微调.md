@@ -8,7 +8,7 @@
 
 型
 
-图1
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/llm01.png)
 
 ##### 	微调是在预训练之后，主要关注：数据、微调成本、RT
 
@@ -43,7 +43,7 @@
 ​	需要创建指令应答数据集，可以制定prompt模块，用data进行填充，制定成遵循指令的问答格式
 指令式：
 
-图2
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/llm02.png)
 
 需要填充input和tool，变成输入，如果需要微调则组装大模型的output。
 
@@ -52,7 +52,7 @@
 收集指令-响应对，也可以是问题-响应对、input&output
 合并起来，应用prompt模版，json格式:
 
-图3
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/llm03.png)
 
 需要将问题和答案连起来，组装text，用tokenizer分词器分词，得到numpy数组格式的向量需要对数据集中的每一条数据都做处理
 分为训练集和测试集，train test_split
@@ -61,7 +61,7 @@
 
 tokenizing 是将文本数据转换为数字的过程，深度学习训练是依靠向量运算，所以需要把中英文转成token表示。
 
-图4
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/llm04.png)
 
 101和102表示句子的开始和结束，中间是转换的词向量
 神经网络的输入向量格式必须统一，所以需要我们对词向量进行“多退少补”
@@ -71,7 +71,7 @@ tokenizing 是将文本数据转换为数字的过程，深度学习训练是依
 
 添加训练数据，计算损失，backprop反向传播，更新权重
 
-图5
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/llm05.png)
 
 评估的时候，可以走ragas，让大模型对测试集做输出，然后训练集的pre和输出用ragas进行评估，查看相似度。
 需要注意的是大模型调用采用的是消息的格式：
@@ -87,7 +87,7 @@ tokenizing 是将文本数据转换为数字的过程，深度学习训练是依
 
 ##### 微调数据集，Apacha格式:
 
-图6
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/llm06.png)
 
 ##### 例如：
 
