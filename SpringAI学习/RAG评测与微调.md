@@ -1,0 +1,111 @@
+## 微调LLM
+
+​	我们工程目前基本都是指令式的(工具调用-手卡)和GC类(答疑助手)，也就是分类+参数提取，微调基本上都是调指令式，GC类应该不需要微调(容易遗忘知识，成本较大)。
+
+##### 	微调：使模型能处理比prompt更长的文本，学习新信息，产生更一致准确的输出。本质是少量训练。
+
+##### 	RAG：prompt工程本质是检索，容易遗漏长文本，微调可以将RAG中长文本直接喂给大模
+
+型
+
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/llm01.png)
+
+##### 	微调是在预训练之后，主要关注：数据、微调成本、RT
+
+​	微调的效果：对比微调和没有微调的大模型
+
+微调的效果：对比微调和没有微调的大模型
+
+	针对 LLM，一个任务，提供1000个输入输出，配对组成数据集，可以对大模型的输出进行修正，组成更好的数据。
+##### 常见数据格式：
+
+1、问题-响应对
+2、指令-响应对
+3、输入-输出对
+4、使用prompt模版的问答对，注意每个部分换行、并且question和answer之前要###隔开，告诉大模型是QA，对数据集内的每行数据应用prompt并且填入，ragas同理。
+	data可以是prompt格式，json格式，json更规范。
+	prompt:
+
+```python
+# 角色
+你是一个淘宝直播的助手，请使用你的能力去帮助主播完成直播的一系列工作
+### instruction
+-不论用户输入什么，您都需要严格遵循每个技能的标准流程以确保工作无误。
+### input
+{input}
+###response:{response}
+```
+
+#### 微调的方式：
+
+##### 1、指令微调：
+
+​	需要创建指令应答数据集，可以制定prompt模块，用data进行填充，制定成遵循指令的问答格式
+指令式：
+
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/llm02.png)
+
+需要填充input和tool，变成输入，如果需要微调则组装大模型的output。
+
+##### 2、准备数据集：
+
+收集指令-响应对，也可以是问题-响应对、input&output
+合并起来，应用prompt模版，json格式:
+
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/llm03.png)
+
+需要将问题和答案连起来，组装text，用tokenizer分词器分词，得到numpy数组格式的向量需要对数据集中的每一条数据都做处理
+分为训练集和测试集，train test_split
+
+##### 3、准备词向量:
+
+tokenizing 是将文本数据转换为数字的过程，深度学习训练是依靠向量运算，所以需要把中英文转成token表示。
+
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/llm04.png)
+
+101和102表示句子的开始和结束，中间是转换的词向量
+神经网络的输入向量格式必须统一，所以需要我们对词向量进行“多退少补”
+截断(Truncation)和填充(Padding)
+
+##### 4、训练过程：
+
+添加训练数据，计算损失，backprop反向传播，更新权重
+
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/llm05.png)
+
+评估的时候，可以走ragas，让大模型对测试集做输出，然后训练集的pre和输出用ragas进行评估，查看相似度。
+需要注意的是大模型调用采用的是消息的格式：
+
+```python
+{'messages":[
+	{"role":"system","content":"<系统输入>"}{"role":"user","content":"<用户输入1>"},			{'role":"assistant","content":"<模型输出1>"}
+	{'role":"user","content":"<用户输入2>"}，
+	{"role":"assistant","content":"<模型输出2>"}{'role":"user","content":"<用户输入3>"}],
+"chosen":# 赞同的回答
+	{“role":"assistant","content":“<赞同的模型期望输出3>”},
+```
+
+##### 微调数据集，Apacha格式:
+
+![](https://github.com/WeiGuang1214/Study-Notes/blob/master/images/llm06.png)
+
+##### 例如：
+
+```python
+	{
+    "instruction":"识别并解释给定列表中的两个科学理论:细胞理论和日心说。",
+	"input":"",
+	"output":"细胞理论是生物科学的一个理论，它认为所有生命体都是由微小的基本单元一细胞所构成。这是生物学的一个基础理论，认为细胞是所有生物的基本结构和功能单位，所有的生物都是由一个或多个细胞组成，细胞只能通过细胞分裂产生新的细胞。这一理论由薛定谔、施瓦内和雪莱于1839年首次提出。n\n日心说是指太阳是太阳系的中心，也就是说，行星围绕"
+	},
+	{
+    "instruction"："输入三支篮球队的名称并生成一个适当的口号。",
+	"input"："俄克拉荷马城雷霆队，芝加哥公牛队，布鲁克林网队。",
+	"output"："雷霆，公牛和网队：各显神通，角逐群雄！\"
+	},
+    {
+    "instruction":"比较以下两位著名人物，使用特征列表并以句子形式提供输出。",
+	"input":"人物1:阿尔伯特·爱因斯坦\n人物2:斯蒂芬·霍金\n特征：智力、教育、对
+世界的影响”,
+	"output"："阿尔伯特·爱因斯坦和斯蒂芬·霍金都是拥有极其出色智力的人物。两人都取得过非常高的教育成就，他们推进了科学发展并在世界范围内产生了深远的影响。爱因斯坦以其相对论和质能关系公式而闻名，而霍金以其关于黑洞和宇宙的发现而著称。两位科学家都以其深厚的学识和非凡的贡献影响了世界。”
+    }
+```
